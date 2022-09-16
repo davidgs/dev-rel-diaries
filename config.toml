@@ -26,10 +26,16 @@ rssLimit = 25
     weight = 2
 
   [[menu.main]]
+    identifier = "Contribute"
+    name = "Contribute"
+    url = "/contribute/"
+    weight = 3
+
+  [[menu.main]]
     identifier = "stories"
     name = "Stories"
     url = "/posts/"
-    weight = 3
+    weight = 4
     hasChildren = true
 
       [[menu.main]]
@@ -71,7 +77,7 @@ rssLimit = 25
   [params.projects]
     enable = false
     projects__title= "How to contribute a <span class='text-span'>Story</span> to the Diaries" # Add a 'text-span' class to highlight text.
-    projects__description= "Please read the latest DevRel Diaries Stories"
+    projects__description= ""
 
 
   #-------------------------------
@@ -153,7 +159,7 @@ rssLimit = 25
   [[params.social]]
     icon = "ion-logo-github"
     name = "Github"
-    link = "https://github.com/davidgs/devreldiaries"
+    link = "https://github.com/davidgs/dev-rel-diaries"
 
   # Example of adding a new link to the footer section:
   # [[params.social]]
