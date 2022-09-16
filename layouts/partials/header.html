@@ -1,0 +1,72 @@
+<!-- begin header -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="header__inner col col-12">
+
+        <div class="logo">
+          <a class="logo__link" href="{{ .Site.BaseURL }}">
+            {{ if .Site.Params.logo }}
+            <img class="logo__image" src="{{ .Site.BaseURL }}{{ .Site.Params.logo }}" alt="{{ .Site.Title }}">
+            {{ else }}
+              {{ .Site.Title }}
+            {{ end }}
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <div class="nav__title">Menu</div>
+            <ul class="nav__list list-reset">
+
+              {{ $currentPage := . }}
+              {{ range.Site.Menus.main }}
+              {{ $menuURL := .URL | absLangURL }}
+              {{ $pageURL:= $currentPage.Permalink | absLangURL }}
+              {{ $active := eq $menuURL $pageURL }}
+
+              {{ if .HasChildren }}
+                <li class="nav__item dropdown">
+                  <span class="nav__link dropdown-toggle">{{ .Name }} <i class="ion ion-ios-arrow-down arrow-down"></i></span>
+                  <div class="dropdown-menu">
+                    {{ range .Children }}
+                    {{ $childURL := .URL | absLangURL }}
+                    {{ $active := eq $childURL $pageURL }}
+                    <a href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{ .URL }}{{else}}{{.URL | relLangURL}}{{end}}"
+                      class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                    {{ end }}
+                  </div>
+                </li>
+
+                {{ else }}
+                <li class="nav__item">
+                  <a href="{{if findRE `^#` .URL}}{{if not $.IsHome}}{{site.BaseURL | relLangURL}}{{end}}{{ .URL }}{{else}}{{.URL | relLangURL}}{{end}}"
+                    class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+
+                
+              {{ end }}
+
+              {{ if .Site.Params.contact.enable }}
+              <li class="nav__item">
+                <a href="#" class="nav__link cta-button button button--small">{{ .Site.Params.menu.button.cta__button__text }}</a>
+              </li>
+              {{ end }}
+
+            </ul>
+          </div>
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->

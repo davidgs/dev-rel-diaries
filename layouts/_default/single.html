@@ -1,0 +1,98 @@
+{{ define "main" }}
+
+{{ if or (eq .Section "post") (eq .Section "posts") }}
+
+<div class="container">
+  <div class="post-head">
+    <div class="post-tags__box">
+      {{ range ($.GetTerms "tags") }}
+        <a href="{{ .Permalink }}" class="post__tag">{{ .LinkTitle }}</a>
+      {{ end }}
+    </div>
+    <h1 class="post-title">{{ .Title }}</h1>
+  </div>
+</div>
+
+{{ if .Params.image }}
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="post-image">
+        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+<!-- begin post -->
+<div class="container">
+  <article class="post animate">
+
+    <div class="post__info">
+      <div class="post__author">
+        <a href="/about/" class="post__author-image">
+          <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+        </a>
+        <div class="post__author-info">
+          <a href="/about/" class="post__author-link">{{.Site.Params.author.author__name}}</a>
+          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time></span>
+        </div>
+      </div>
+
+      {{ partial "share-buttons.html" . }}
+
+    </div>
+
+    <div class="post__content">
+      {{ .Content }}
+    </div>
+
+    {{ partial "post-navigation.html" . }}
+
+  </article>
+</div>
+<!-- end post -->
+
+{{ partial "related-posts.html" . }}
+
+{{ if .Site.Params.disqus.disqusShortname }}
+  {{ partial "disqus-comments.html" . }}
+{{ end }}
+
+
+{{ else }}
+
+<div class="container">
+  <div class="page-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+  </div>
+</div>
+
+{{ if .Params.image }}
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="page-image">
+        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+<!-- begin page -->
+<div class="container">
+
+  <article class="page animate">
+    <div class="page__content">
+      {{ .Content }}
+    </div>
+  </article>
+
+</div>
+<!-- end page -->
+
+{{ end }}
+
+{{ end }}

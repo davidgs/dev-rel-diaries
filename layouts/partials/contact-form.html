@@ -1,0 +1,45 @@
+{{ if .Site.Params.contact.enable }}
+<!-- begin contact -->
+<div class="contact-modal">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <div class="contact-close">
+          <i class="ion ion-md-close"></i>
+        </div>
+
+        <div class="form-box">
+          <div class="contact-head">
+            {{ if .Site.Params.contact.contact__title }}
+              <h2 class="contact-title">{{ .Site.Params.contact.contact__title | safeHTML }}</h2>
+            {{ end }}
+            {{ if .Site.Params.contact.contact__description }}
+              <p class="contact-description">{{ .Site.Params.contact.contact__description }}</p>
+            {{ end }}
+          </div>
+          <form class="form" action="{{ if .Site.Params.contact.contact__email }}https://formspree.io/f/{{.Site.Params.contact.contact__email}}{{ else }}#{{ end }}" method="POST">
+            <div class="form__group">
+              <label class="form__label screen-reader-text" for="form-name">Your Name</label>
+              <input class="form__input" id="form-name" type="text" name="name" placeholder="Your name..." required>
+            </div>
+            <div class="form__group">
+              <label class="form__label screen-reader-text" for="form-email">Your Email</label>
+              <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="Your email..." required>
+            </div>
+            <div class="form__group">
+              <label class="form__label screen-reader-text" for="form-text">Your Message</label>
+              <textarea class="form__input" id="form-text" name="text" rows="8" placeholder="Your message..." required></textarea>
+            </div>
+            <div class="form__group form__group-button">
+              <button class="button button--middle" type="submit">Send now <i class="ion ion-ios-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact -->
+{{ end }}

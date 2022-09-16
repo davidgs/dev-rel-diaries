@@ -1,0 +1,21 @@
+<!-- begin footer -->
+<footer class="footer">
+
+  {{ if .Site.Params.global.image.enable }}
+    <div class="footer-cover">
+      <div class="cover-image">
+        <img class="lazy" data-src="{{.Site.Params.global.image.cover__image}}" alt="{{.Site.Params.title}}">
+      </div>
+    </div>
+  {{ end }}
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        {{ partial "social-links.html" . }}
+        <div class="copyright">{{ dateFormat "2006" now }} &copy; <a href="/">{{ .Site.Title }}</a>. All Right Reserved. Published with <a href="https://gohugo.io/">Hugo</a>.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->

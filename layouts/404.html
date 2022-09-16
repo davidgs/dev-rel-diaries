@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<!-- begin page -->
+<div class="container animate">
+  <article class="page">
+    <div class="page__content">
+      <div class="container">
+        <div class="row">
+          <div class="col col-12">
+            <div class="error">
+              <h2 class="error__title">404</h2>
+              <p class="error__text">The requested page could not be found.</p>
+              <a class="button button--middle error__button" href="/">Back to homepage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<!-- end page -->
+
+<!-- begin recent posts -->
+<div class="container">
+  <section class="recent-posts section animate">
+    <h5 class="related-title"><span>Recent Posts</span></h5>
+    <div class="row grid">
+      {{ range ( where site.RegularPages "Section" "posts" | first 3 ) }}
+        {{ partial "article-content.html" . }}
+      {{ end }}
+    </div>
+  </section>
+</div>
+<!-- end recent posts -->
+
+{{ end }}

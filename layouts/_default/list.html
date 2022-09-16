@@ -1,0 +1,67 @@
+{{ define "main" }}
+
+{{ if (eq .Section "tags") }}
+
+<!-- begin archive -->
+<div class="archive">
+
+  <div class="container">
+    <div class="row">
+        <div class="col col-12">
+          <div class="page-head">
+            <div class="tag">
+              <h1 class="page-title">{{ humanize .Title }}</h1>
+              <div class="tag-meta">
+                <div class="tag-count{{ if gt (len .Pages) 9 }} count-padding-small{{ end }}">
+                  <div class="tag-number">{{ len .Pages }}</div>
+                </div>
+                <span>{{ if lt (len .Pages) 2 }}Article{{ else }}Articles{{ end }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row animate">
+      {{ range .Data.Pages }}
+        {{ partial "article-content.html" . }}
+      {{ end }}
+    </div>
+  </div>
+
+</div>
+<!-- end archive -->
+
+{{ else }}
+
+<!-- begin page-head -->
+<div class="container">
+  <div class="row">
+    <div class="col col-8 push-2 col-t-12 push-t-0">
+      <div class="page-head">
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ if .Description }}
+          <p class="page-description">{{ .Description }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page-head -->
+
+<div class="container animate">
+  <div class="row">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts" ) }}
+    {{ range $paginator.Pages }}
+      {{ partial "article-content.html" . }}
+    {{ end }}
+  </div>
+</div>
+
+{{ partial "pagination.html" . }}
+
+{{ end }}
+
+{{ end }}

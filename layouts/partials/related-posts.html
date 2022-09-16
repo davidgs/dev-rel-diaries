@@ -1,0 +1,12 @@
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts section animate">
+    <h5 class="related-title"><span>You may also like</span></h5>
+    <div class="row grid">
+      {{ range first 3 ( where ( where .Site.Pages.ByDate.Reverse ".Params.tags" "intersect" .Params.tags ) "Permalink" "!=" .Permalink ) }}
+        {{ partial "article-content.html" . }}
+      {{ end }}
+    </div>
+  </section>
+</div>
+<!-- end related posts -->

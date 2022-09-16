@@ -1,0 +1,176 @@
+baseURL = 'https://devreldiaries.com/'
+languageCode = 'en-us'
+title = 'DevRel 🥑 Diaries'
+theme = "avenco"
+author = "David G. Simmons"
+copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
+rssLimit = 25
+
+[params]
+  logo = "/images/DevAdv.png" # You can add own logo. For example "/images/logo.png".
+  description = "DevRel Diaries: Where Real DevRel Meets Real Life"
+
+  #-------------------------------
+# Main Menu
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "CoC"
+    name = "Code of Conduct"
+    url = "/CODE_OF_CONDUCT/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "stories"
+    name = "Stories"
+    url = "/posts/"
+    weight = 3
+    hasChildren = true
+
+      [[menu.main]]
+      parent = "Pages"
+      name = "About"
+      url = "/about/"
+      weight = 1
+
+      [[menu.main]]
+      parent = "Pages"
+      name = "Stories"
+      url = "/posts/"
+      weight = 2
+
+      [[menu.main]]
+      parent = "Pages"
+      name = "Code of Conduct"
+      url = "/CODE_OF_CONDUCT/"
+      weight = 2
+
+  # Call to action button
+  [params.menu.button]
+    cta__button__text = "Get in touch"
+
+
+  #-------------------------------
+  # Author Settings
+  [params.author]
+    author__name = "DevRel Diaries"
+    author__title = "Hello We are DevRel Diaries"
+    author__bio = "We are collecting and sharing real-life stories from real-life Developer Relations Professionals. Please feel free to share with us! See [how to contribute](/about/)."
+    author__image = "/images/bethany-randall-XgZ0et0FUS8-unsplash.jpg"
+    author__avatar = "/images/DevAdv.png"
+    button__text = "See our stories"
+
+
+  #-------------------------------
+  # Projects Settings
+  [params.projects]
+    enable = false
+    projects__title= "How to contribute a <span class='text-span'>Story</span> to the Diaries" # Add a 'text-span' class to highlight text.
+    projects__description= "Please read the latest DevRel Diaries Stories"
+
+
+  #-------------------------------
+  # Testimonials Section
+  [params.testimonials]
+    enable = false
+    testimonial__title = "My Happy <span class='text-span'>Clients</span>" # Add a 'text-span' class to highlight text.
+    testimonial__description = ""
+
+  [[params.testimonial_item]]
+    name = "Zaire Baptista"
+    image = "https://via.placeholder.com/250x250"
+    designation = "Traveler"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+  [[params.testimonial_item]]
+    name = "Ann Philips"
+    image = "https://via.placeholder.com/250x250"
+    designation = "Designer"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+  [[params.testimonial_item]]
+    name = "Roger Bergson"
+    image = "https://via.placeholder.com/250x250"
+    designation = "CEO, Founder"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+  [[params.testimonial_item]]
+    name = "Julie Arnold"
+    image = "https://via.placeholder.com/250x250"
+    designation = "Full stack developer"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+
+  #-------------------------------
+  # Blog Section
+  [params.blog]
+    enable = true
+    blog__title = "Recent <span class='text-span'>Stories</span> " # Add a 'text-span' class to highlight text.
+    blog__description = "Read the latest diary entries"
+
+
+  #-------------------------------
+  # Contact Settings
+  [params.contact]
+    enable = true
+    contact__email = "diaries@devreldiaries.com" # Add your form_id
+    contact__title = "<span class='text-span'>Get</span> in touch" # Add a title to your form
+    contact__description = "Contribute your story!" # Add a description to your form
+
+    # NOTE
+    # Avenco comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want.
+
+
+  #-------------------------------
+  # Newsletter Settings
+  [params.mailchimp]
+    enable = false
+    mailchimp__title = "<span class='text-span'>Join</span> my mailing list" # Add your title
+    mailchimp__text = "Get the best inspiration and, cool stuff about design!" # Add descriptions to the form. If you want to use more than one sentence, be sure to separate them with a comma.
+    mailchimp__identifier = "frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3" # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
+    mailchimp__button__text = "Subscribe" # Add your button text
+
+  #-------------------------------
+  # Comment Section (Disqus)
+  [params.disqus]
+    enable = false
+    disqusShortname = "anvodstudio-demo" # Add your shortname for Disqus Comment. For example anvodstudio-demo
+
+
+  #-------------------------------
+  # Footer Settings
+  # Social Links
+  [[params.social]]
+    icon = "ion-logo-twitter"
+    name = "Twitter"
+    link = "https://twitter.com/devreldiaries"
+
+  [[params.social]]
+    icon = "ion-logo-github"
+    name = "Github"
+    link = "https://github.com/davidgs/devreldiaries"
+
+  # Example of adding a new link to the footer section:
+  # [[params.social]]
+  #   icon = "ion-logo-facebook"
+  #   name = "Facebook"
+  #   link = "https://facebook.com"
+
+  # Other icons can be found at https://ionicons.com/v4/
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
+[markup.highlight]
+  codeFences = true
+  guessSyntax = true
+  noClasses = false

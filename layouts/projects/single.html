@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+<div class="container">
+
+  <div class="page-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ if .Params.subtitle }}
+      <p class="project-subtitle">{{ .Params.subtitle }}</p>
+    {{ end }}
+  </div>
+
+  {{ if .Params.image }}
+  <div class="row">
+    <div class="col col-12">
+      <div class="page-image">
+        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="project-content">
+    {{ .Content }}
+  </div>
+
+  {{ if .PrevInSection }}
+  <div class="project__navigation">
+    <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
+      <div class="project__box">
+        <span class="project__nav__info">Next Project</span>
+        <h2 class="project__nav__title">{{ .PrevInSection.Title }}<i class="ion ion-md-arrow-round-forward arrow-right"></i></h2>
+      </div>
+    </a>
+  </div>
+  {{ end }}
+
+</div>
+
+{{ end }}

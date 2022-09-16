@@ -1,0 +1,40 @@
+{{ define "main" }}
+
+<!-- begin page-head -->
+<div class="container">
+  <div class="page-head">
+    <h1 class="page-title">{{.Title}}</h1>
+    {{ if .Description }}
+      <p class="page-description">{{ .Description }}</p>
+    {{ end }}
+  </div>
+</div>
+<!-- end page-head -->
+
+<div class="container animate">
+  <div class="row">
+
+    {{ range (where .Site.RegularPages "Section" "projects" ) }}
+    <article class="project col col-4 col-d-6 col-t-12">
+      <div class="project__content">
+        <a href="{{ .RelPermalink }}" class="project__image">
+          <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Params.Title }}">
+        </a>
+        <div class="project__info">
+          <div class="project__info-wrap">
+            <h3 class="project__title">{{ .Params.title }}</h3>
+          </div>
+          <div class="project__info-wrap">
+            {{ if .Params.subtitle }}
+              <div class="project__subtitle">{{ .Params.subtitle }} –</div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </article>
+    {{ end }}
+
+  </div>
+</div>
+
+{{ end }}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+{{ partial "head.html" . }}
+
+  <body>
+
+    {{ template "_internal/google_analytics.html" . }}
+
+    {{ if .Site.Params.global.image.enable }}
+      <div class="top-cover">
+        <div class="cover-image">
+          <img class="lazy" data-src="{{.Site.Params.global.image.cover__image}}" alt="{{.Site.Params.title}}">
+        </div>
+      </div>
+    {{ end }}
+
+    {{ partial "header.html" . }}
+
+    <!-- begin content -->
+    <main class="content animate" aria-label="Content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <!-- end content -->
+
+    {{ partial "contact-form.html" . }}
+
+    {{ partial "section-subscribe.html" . }}
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    {{ partial "footer.html" . }}
+
+    {{ partial "javascripts.html" . }}
+
+  </body>
+
+</html>
