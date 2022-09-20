@@ -1,12 +1,10 @@
 ---
 title: Contribute to DevRel Diaries
 image: /images/nathan-dumlao-e47gwnA7KGk-unsplash.jpg
+image_caption: "Photo by <a href=\"https://unsplash.com/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Nathan Dumlao</a> on <a href=\"https://unsplash.com/s/photos/diary?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>"
 description: "Contributing to DevRel Diaries"
 date: 2021-07-15
 ---
-Photo by <a href="https://unsplash.com/ja/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Dumlao</a> on <a href="https://unsplash.com/s/photos/diary?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-
-
 ## How this works
 
 We want to let you share your story.
