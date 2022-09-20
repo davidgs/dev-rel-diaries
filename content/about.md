@@ -1,17 +1,19 @@
 ---
 title: About DevRel Diaries
 image: /images/marc-schaefer-J4bugcA2Vwg-unsplash.jpg
+image_caption: "Photo by <a href=\"https://unsplash.com/@marcschaefer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Marc Schaefer</a> on <a href=\"https://unsplash.com/s/photos/diaries?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>"
 description: "About DevRel Diaries"
 date: 2021-07-15
 ---
-Photo by <a href="https://unsplash.com/@marcschaefer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marc Schaefer</a> on <a href="https://unsplash.com/s/photos/diaries?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-
 
 ## Who are we?
 
 We are DevRel Professionals just like you. We are passionate about Developer Relations as well as the health and happiness of others. We want to make discussing mental health and wellness ok within DevRel communities so we've started this experiment to do just that.
 
-This project is currently administered by [David G. Simmons](https://twitter.com/davidgsIoT) and [Rain Leander](https://twitter.com/rainleander).
+This project is carefully and lovingly created and curated by
+- Rain Leander [![web](/images/www.png)](https://therain.dev) [![twitter](/images/twit-32.png)](https://twitter.com/rainleander)
+- David G. Simmons [![web](/images/www.png)](https://davidgs.com) [![twitter](/images/twit-32.png)](https://twitter.com/davidgsIoT)
+
 
 ## How this works
 

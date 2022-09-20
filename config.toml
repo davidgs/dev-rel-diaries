@@ -32,23 +32,18 @@ rssLimit = 25
     weight = 3
     hasChildren = true
 
-    [[menu.main]]
-      parent = "Contribute"
-      name = "Submit story"
-      url = "/submit/"
-      weight = 2
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "Submit quote"
-      url = "/submit_quote/"
-      weight = 3
 
     [[menu.main]]
       parent = "Contribute"
       name = "Code of Conduct"
       url = "/code_of_conduct/"
       weight = 4
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Privacy Policy"
+      url = "/privacy_policy/"
+      weight = 5
 
     [[menu.main]]
       parent = "Contribute"

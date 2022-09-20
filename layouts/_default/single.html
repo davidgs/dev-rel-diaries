@@ -20,6 +20,13 @@
       <div class="post-image">
         <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
       </div>
+      <div id="caption" class="col col-12">
+      {{ if .Params.image_caption }}
+        <div class="post-image__caption">
+          {{ .Params.image_caption | safeHTML }}
+        </div>
+      {{ end }}
+    </div>
     </div>
   </div>
 </div>
@@ -76,7 +83,11 @@
       <div class="page-image">
         <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
       </div>
-    </div>
+      {{ if .Params.image_caption }}
+      <div class="post-image__caption">
+        {{ .Params.image_caption | safeHTML }}
+      </div>
+      {{ end }}
   </div>
 </div>
 {{ end }}
