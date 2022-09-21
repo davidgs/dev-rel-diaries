@@ -17,9 +17,10 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <h2><span class='text-span'>Time</span> to tell your story</h2>
-  <p><span class='text-span'>Use</span> the form below to create a new story. You can use the editor to format your story and add images.</p>
-  <p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely.</p>
+<h2><span class='text-span'>Time</span> to tell your story</h2>
+<p><span class='text-span'>Use</span> the form below to create a new story. You can use the editor to format your story
+  and add images.</p>
+<p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely.</p>
 <form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate>
   <div class="form-floating col-md-6">
     <input type="text" class="form-control" id="titleInput" placeholder="The title of your story"
@@ -27,34 +28,6 @@
     <label for="titleInput">Title</label>
     <div id="titleHelpBlock" class="form-text">
       Give your story a compelling title. This field is required.
-    </div>
-    <div class="form-floating col-md-6">
-      <input type="text" class="form-control" id="titleInput" placeholder="The title of your story"
-        aria-describedby="titleHelpBlock" required>
-      <label for="titleInput">Title</label>
-      <div id="titleHelpBlock" class="form-text">
-        Give your story a compelling title. This field is required.
-      </div>
-      <div class="invalid-feedback">
-        You must provide a title for your story.
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="form-floating col-md-6">
-      <input type="text" class="form-control" id="descriptionInput" placeholder="Describe your story"
-        aria-describedby="descriptionHelpBlock" required>
-      <label for="descriptionInput">Description</label>
-      <div id="descriptionHelpBlock" class="form-text">
-        Give your story a brief description. This field is required.
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-      <div class="invalid-feedback">
-        You must provide a description for your story.
-      </div>
     </div>
   </div>
   <div class="form-floating col-md-6">
@@ -65,35 +38,10 @@
       Give your story a brief description. This field is required.
     </div>
     <div class="valid-feedback">
-      <span class='text-span'>Looks</span> good!
+      Looks good!
     </div>
     <div class="invalid-feedback">
-      <span class='text-span'>You</span> must provide a description for your story.
-    </div>
-  </div>
-  <div class="form-floating col-md-12">
-    <input type="text" class="form-control" id="imageInput" placeholder="Header Image" aria-describedby="imageHelpBlock"
-      required>
-    <label for="imageInput">Header Image Location</label -->
-      <div id="imageHelpBlock" class="form-text">
-        Enter the full URL to an image you'd like to use as the header-image for your story. (We use <a
-          href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
-      </div>
-      <div class="invalid-feedback">
-        You must provide a header image for your story.
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="form-floating col-md-12">
-      <textarea id="input" required></textarea>
-      <div class="invalid-feedback">
-        You must provide a story.
-      </div>
-    </div>
-    <div class="valid-feedback">
-      Looks good!
+      You must provide a description for your story.
     </div>
   </div>
   <div class="form-floating col-md-12">
@@ -111,46 +59,66 @@
       Looks good!
     </div>
   </div>
-  <h2 id="storyHeader" aria-describedby="storyHeaderHelpBlock"><span class='text-span'>Your</span> story</h2>
-  <div id="storyHeaderHelpBlock" class="form-text">
-    Write your story here in Markdown. The browser will autosave the contents for you so you don't have to worry about
-    losing your work. When you're happy with your story, click the submit button.
+  <div class="form-floating col-md-12">
+    <input type="text" class="form-control" id="imageInput" placeholder="Header Image" aria-describedby="imageHelpBlock"
+      required>
+    <label for="imageInput">Header Image Location</label -->
+    <div id="imageHelpBlock" class="form-text">
+      Enter the full URL to an image you'd like to use as the header-image for your story. (We use <a
+        href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
+    </div>
+    <div class="invalid-feedback">
+      You must provide a header image for your story.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
   </div>
+  <h2><span class='text-span'>Your</span> story</h2>
   <div class="form-floating col-md-12">
     <textarea id="input" required></textarea>
     <div class="invalid-feedback">
       You must provide a story.
     </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div id="storyHeaderHelpBlock" class="form-text">
+      Write your story here in Markdown. The browser will autosave the contents for you so you don't have to worry about
+      losing your work. When you're happy with your story, click the submit button.
+    </div>
   </div>
-  </FormGroup>
-  <p><span class='text-span'>The</span> following fields are <strong>not</strong> required.</p>
-  <div class="form-floating col-md-8">
+  <div class="form-floating col-md-12">
+  <span class='text-span'>The</span> following fields are <strong>not</strong> required.
+  <!--p><span class='text-span'>If</span> you do not wish to provide any of the following information, please leave the
+    fields blank.</p --></div>
+  <div class="form-floating col-md-6">
     <input type="email" class="form-control" id="emailInput" placeholder="name@example.com"
       aria-describedby="emailHelpBlock">
     <label for="emailInput">Email address</label>
     <div id="emailHelpBlock" class="form-text">
-      You do <strong>not</strong> have to supply your email address. If you do, we will never share it with anyone else.
+      You do <strong>not</strong> have to supply your email address. If you do, we will never share it with anyone
+      else.
     </div>
   </div>
-  <div class="form-floating col-md-4">
+  <div class="form-floating col-md-6">
     <label for="twitterUsername" class="form-label">Twitter Handle</label>
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">@</span>
       <input type="text" class="form-control" id="twitterUsername" aria-describedby="twitterUsernameHelpBlock">
       <div id="twitterUsernameHelpBlock" class="form-text">
-        You do <strong>not</strong> have to supply your twitter handle. If you do, we will link your submission to your
+        You do <strong>not</strong> have to supply your twitter handle. If you do, we will link your submission to
+        your
         twitter account.
       </div>
     </div>
   </div>
-
-  <div class="form-floating col-md-6">
+  <div class="form-floating col-md-12">
     <input type="url" class="form-control" id="webInput" placeholder="Your website" aria-describedby="webHelpBlock">
     <label for="webInput">Your website</label>
     <div id="webHelpBlock" class="form-text">
       You do <strong>not</strong> have to supply this. If you do, we will link your submission back to this address.
     </div>
-
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="form-floating col-md-8">
@@ -177,13 +145,16 @@
   </div>
 </form>
 <script>
+  let coc = false;
+  const easyMDE = new EasyMDE();
+
   document.querySelector('.custom-file-input').addEventListener('change', function (e) {
     var name = document.getElementById("customFileInput").files[0].name;
     var nextSibling = e.target.nextElementSibling
     nextSibling.innerText = name
   })
-  let coc = false;
-  const easyMDE = new EasyMDE();
+
+
   function clearForm() {
     easyMDE.value('');
   }
@@ -214,64 +185,15 @@
     };
     console.log(data);
     fetch('http://devreldiaries.com:9494/submitStory', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("POST", "http://devreldiaries.com:9494/submitStory/", true);
-    // xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-    // xhr.setRequestHeader("Accept", "application/json");
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState === 4 && xhr.status === 200) {
-    //     console.log(xhr.responseText);
-    //   } else {
-    //     console.log(xhr.responseText);
-    //   }
-    // };
-    // xhr.send(data);
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   });
 
-  // function sendData(function (callback) {
-  //   const httpTransport = require('https');
-  //   const responseEncoding = 'utf8';
-  //   const httpOptions = {
-  //     hostname: 'devreldiaries.com',
-  //     port: '9494',
-  //     path: '/submitStory',
-  //     method: 'POST',
-  //         headers: { "Content-Type": "application/json; charset=utf-8" }
-  //   };
-  //   httpOptions.headers['User-Agent'] = 'node ' + process.version;
-  //       // Paw Follow Redirects option is not supported
-  //       // Paw Store Cookies option is not supported
-  //   const request = httpTransport.request(httpOptions, (res) => {
-  //     let responseBufs = [];
-  //     let responseStr = '';
-  //     res.on('data', (chunk) => {
-  //       if (Buffer.isBuffer(chunk)) {
-  //         responseBufs.push(chunk);
-  //       }
-  //       else {
-  //         responseStr = responseStr + chunk;
-  //       }
-  //     }).on('end', () => {
-  //       responseStr = responseBufs.length > 0 ?
-  //         Buffer.concat(responseBufs).toString(responseEncoding) : responseStr;
-  //         callback(null, res.statusCode, res.headers, responseStr);
-  //     });
-  //   })
-  //     .setTimeout(0)
-  //     .on('error', (error) => {
-  //         callback(error);
-  //     });
-  //   request.write("{\"content\":\"This is my story\\u21b5\\u21b5### Part 3\\u21b5\\u21b5I'll stick to it.\",\"description\":\"Stick it\",\"email\":\"santafen@mac.com\",\"image\":\"image.jpg\",\"title\":\"My story\",\"twitter\":\"davidgsIoT\",\"web\":\"https://davidgs.com\",\"contents\":\"# My Story\\nThis is my story\\n## Sticking it\\nI'm sticking to it.\"}");
-  //   request.end();
-  // }) ((error, statusCode, headers, body) => {
-  //       console.log('ERROR:', error);
-  //       console.log('STATUS:', statusCode);
-  //       console.log('HEADERS:', JSON.stringify(headers));
-  //       console.log('BODY:', body);
-  //   });
-  // }
   function checkCOC() {
     if (coc) {
       coc = false;
