@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
 
-  <title>{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if not .IsHome }}{{ humanize .Title | safeHTML }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
 
   {{ with .OutputFormats.Get "rss" -}}
@@ -24,9 +24,9 @@
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  
+
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" as="style">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" rel="stylesheet">
 
   <!-- Ionicons -->

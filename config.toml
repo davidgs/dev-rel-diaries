@@ -32,7 +32,18 @@ rssLimit = 25
     weight = 3
     hasChildren = true
 
+[[menu.main]]
+      parent = "Contribute"
+      name = "Submit story"
+      url = "/submit/"
+      weight = 2
 
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Submit quote"
+      url = "/submit_quote/"
+      weight = 3
+      
     [[menu.main]]
       parent = "Contribute"
       name = "Code of Conduct"
@@ -85,7 +96,7 @@ rssLimit = 25
   # Author Settings
   [params.author]
     author__name = "DevRel Diaries"
-    author__title = "Hello We are DevRel Diaries"
+    author__title = "<span class='text-span'>Hello</span> We are DevRel Diaries"
     author__bio = "We are collecting and sharing real-life stories from real-life Developer Relations Professionals. Please feel free to share with us! See [how to contribute](/about/)."
     author__image = "/images/bethany-randall-XgZ0et0FUS8-unsplash.jpg"
     author__avatar = "/images/DevAdv.png"
@@ -119,7 +130,7 @@ rssLimit = 25
   # Blog Section
   [params.blog]
     enable = true
-    blog__title = "Recent <span class='text-span'>Stories</span> " # Add a 'text-span' class to highlight text.
+    blog__title = "<span class='text-span'>Recent</span> Stories " # Add a 'text-span' class to highlight text.
     blog__description = "Read the latest diary entries"
 
 

@@ -4,7 +4,7 @@
     {{ if .Params.Image }}
       <div class="image-wrap">
         <a class="article__image" href="{{ .RelPermalink }}">
-          <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+          <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title | safeHTML }}">
         </a>
         <div class="col col-12">
           {{ if .Params.image_caption }}
@@ -27,7 +27,7 @@
       {{ end }}
 
       <h2 class="article__title">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <a href="{{ .RelPermalink }}">{{ .Title | safeHTML }}</a>
       </h2>
 
       <p class="article__excerpt">{{ if .Description }}{{ .Description }}{{ else }}{{ truncate 75 .Summary | safeHTML }}{{ end }}</p>

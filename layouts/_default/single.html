@@ -9,7 +9,7 @@
         <a href="{{ .Permalink }}" class="post__tag">{{ .LinkTitle }}</a>
       {{ end }}
     </div>
-    <h1 class="post-title">{{ .Title }}</h1>
+    <h1 class="post-title">{{ .Title | safeHTML }}</h1>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col col-12">
       <div class="post-image">
-        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title | safeHTML }}">
       </div>
       <div id="caption" class="col col-12">
       {{ if .Params.image_caption }}
@@ -72,7 +72,7 @@
 
 <div class="container">
   <div class="page-head">
-    <h1 class="page-title">{{ .Title }}</h1>
+    <h1 class="page-title">{{ .Title | safeHTML }}</h1>
   </div>
 </div>
 
