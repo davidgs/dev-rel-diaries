@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="page-head">
-    <h1 class="page-title">{{ .Title }}</h1>
+    <h1 class="page-title">{{ .Title | safeHTML }}</h1>
     {{ if .Params.subtitle }}
       <p class="project-subtitle">{{ .Params.subtitle }}</p>
     {{ end }}
