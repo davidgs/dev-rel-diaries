@@ -1,4 +1,4 @@
-baseURL = 'https://devreldiaries.com/'
+baseURL = 'https://devreldiaries.com/staging'
 languageCode = 'en-us'
 title = 'DevRel 🥑 Diaries'
 theme = "avenco"
@@ -20,10 +20,23 @@ rssLimit = 25
     weight = 1
 
   [[menu.main]]
-    identifier = "CoC"
-    name = "Code of Conduct"
-    url = "/CODE_OF_CONDUCT/"
+    identifier = "Policies"
+    name = "Policies"
+    url = "/policies/"
     weight = 2
+    hasChildren = true
+
+    [[menu.main]]
+      parent = "Policies"
+      name = "Code of Conduct"
+      url = "/code_of_conduct/"
+      weight = 1
+
+    [[menu.main]]
+      parent = "Policies"
+      name = "Privacy Policy"
+      url = "/privacy_policy/"
+      weight = 2
 
   [[menu.main]]
     identifier = "Contribute"
@@ -32,36 +45,13 @@ rssLimit = 25
     weight = 3
     hasChildren = true
 
-[[menu.main]]
-      parent = "Contribute"
-      name = "Submit story"
-      url = "/submit/"
-      weight = 2
-
     [[menu.main]]
       parent = "Contribute"
-      name = "Submit quote"
-      url = "/submit_quote/"
-      weight = 3
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "Code of Conduct"
-      url = "/code_of_conduct/"
-      weight = 4
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "Privacy Policy"
-      url = "/privacy_policy/"
-      weight = 5
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "How to ..."
+      name = "Contributions"
       url = "/contribute/"
       weight = 1
-      [[menu.main]]
+
+    [[menu.main]]
       parent = "Contribute"
       name = "Submit story"
       url = "/submit/"
@@ -72,6 +62,7 @@ rssLimit = 25
       name = "Submit quote"
       url = "/submit_quote/"
       weight = 3
+
 
   [[menu.main]]
     identifier = "stories"
@@ -90,12 +81,6 @@ rssLimit = 25
     parent = "Pages"
     name = "Stories"
     url = "/posts/"
-    weight = 2
-
-  [[menu.main]]
-    parent = "Pages"
-    name = "Code of Conduct"
-    url = "/CODE_OF_CONDUCT/"
     weight = 2
 
   # Call to action button
@@ -121,20 +106,6 @@ rssLimit = 25
     projects__title= "<span class='text-span'>How</span> to contribute a Story to the Diaries" # Add a 'text-span' class to highlight text.
     projects__description= ""
 
-
-  #-------------------------------
-  # Testimonials Section
-  [params.testimonials]
-    enable = true
-    testimonial__title = "<span class='text-span'>Insights</span> and Quotes"
-    testimonial__description = "<span class='text-span'>Short</span> quotes and insights from DevRel Professionals"
-
-  [[params.testimonial_item]]
-    name = "David G. Simmons"
-    link="https://twitter.com/davidgsIoT"
-    image = "/testimonials/images/profile-pic.jpg"
-    designation = "Head of Developer Advocacy"
-    content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
 
 
   #-------------------------------
@@ -205,3 +176,18 @@ rssLimit = 25
   codeFences = true
   guessSyntax = true
   noClasses = false
+
+#-------------------------------
+  # Testimonials Section
+  [params.testimonials]
+    enable = true
+    testimonial__title = "<span class='text-span'>Insights</span> and Quotes"
+    testimonial__description = "<span class='text-span'>Short</span> quotes and insights from DevRel Professionals"
+
+  [[params.testimonial_item]]
+    name = "David G. Simmons"
+    link="https://twitter.com/davidgsIoT"
+    image = "/posts/images/profile-pic.png"
+    designation = "Head of Developer Advocacy"
+    content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
+
