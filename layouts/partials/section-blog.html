@@ -12,7 +12,7 @@
             <a class="section__link" href="/posts">View all <i class="ion ion-md-arrow-forward"></i></a>
           </div>
           {{ if .Site.Params.blog.blog__description }}
-            <p class="section__description">{{ .Site.Params.blog.blog__description }}</p>
+            <p class="section__description">{{ .Site.Params.blog.blog__description | safeHTML}}</p>
           {{ end }}
         </div>
 
