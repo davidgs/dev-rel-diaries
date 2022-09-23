@@ -33,14 +33,40 @@
       <p class="article__excerpt">{{ if .Description }}{{ .Description }}{{ else }}{{ truncate 75 .Summary | safeHTML }}{{ end }}</p>
 
       <div class="article__meta">
-        <a href="/about/" class="article__author-image">
-          <img src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+        {{ if .Params.author_link }}
+        <a href="{{ .Params.author_link }}" class="post__author-image">
+          {{ if .Params.author_avatar }}
+            <img class="lazy" data-src="{{ .Params.author_avatar }}" alt="{{ .Params.author }}">
+          {{ else }}
+            <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+          {{ end }}
         </a>
-        <div class="article-info">
-          <a href="/about/" class="article__author-link">{{.Site.Params.author.author__name}}</a>
-          <span class="article__date"><time datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006"
-            }}</time></span>
+        <div class="post__author-info">
+          <a href="{{ .Params.author_link }}" class="post__author-link">{{ .Params.author | safeHTML }}</a>
+          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{
+              .Date.Format "2 Jan 2006" }}</time></span>
+              {{ if .Params.author_twitter}}
+              <span><a href="https://twitter.com/{{.Params.author_twitter}}"><img class="lazy" data-src="/images/twit-32.png" alt="@{{.Params.author_twitter}}"></a></span>
+              {{ end }}
         </div>
+        {{ else }}
+        <a href="/about/" class="post__author-image">
+          {{ if .Params.author_avatar }}
+          <img class="lazy" data-src="{{ .Params.author_avatar }}" alt="{{ .Params.author }}">
+          {{ else }}
+          <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+          {{ end }}
+        </a>
+        <div class="post__author-info">
+          <a href="/about/" class="post__author-link">{{ .Params.author | safeHTML }}</a>
+          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{
+              .Date.Format "2 Jan 2006" }}</time></span>
+              {{ if .Params.author_twitter}}
+              <span><a href="https://twitter.com/{{.Params.author_twitter}}"><img class="lazy"
+                    data-src="/images/twit-32.png" alt="@{{.Params.author_twitter}}"></a></span>
+              {{ end }}
+        </div>
+        {{ end }}
       </div>
 
     </div>
