@@ -107,7 +107,7 @@
 <form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate>
   <div class="form-floating col-md-6">
     <input type="text" class="form-control" id="titleInput" placeholder="The title of your story"
-      aria-describedby="titleHelpBlock" required>
+      aria-describedby="titleHelpBlock" required oninput=enableDesc(this)>
     <label for="titleInput">Title</label>
     <div id="titleHelpBlock" class="form-text">
       Give your story a compelling title. This field is required.
@@ -115,7 +115,7 @@
   </div>
   <div class="form-floating col-md-6">
     <input type="text" class="form-control" id="descriptionInput" placeholder="Describe your story"
-      aria-describedby="descriptionHelpBlock" required>
+      aria-describedby="descriptionHelpBlock" required disabled oninput=enableDesc(this)>
     <label for="descriptionInput">Description</label>
     <div id="descriptionHelpBlock" class="form-text">
       Give your story a brief description. This field is required.
@@ -129,7 +129,7 @@
   </div>
   <div class="form-floating col-md-12">
     <input type="text" class="form-control" id="nameInput" placeholder="Your name or pseudonym"
-      aria-describedby="nameHelpBlock" required>
+      aria-describedby="nameHelpBlock" required disabled oninput=enableDesc(this)>
     <label for="nameInput">Name or Pseudonym</label>
     <div id="nameHelpBlock" class="form-text">
       You do <strong>not</strong> have to supply your real name. Please feel free to use an anonymous pseudonym if you
@@ -144,7 +144,7 @@
   </div>
   <div class="input-group input-group-lg col-md-12">
       <input type="file" class="form-control" id="customFileInput" placeholder="Choose your Header Image" aria-describedby="imageHelpBlock"
-      required onchange=setImage()></input>
+      required onchange=setImage()  disabled oninput=enableDesc(this)></input>
     <!--label for="imageInput">Header Image</label -->
     <div id="imageHelpBlock" class="form-text">
       Enter the full URL to an image you'd like to use as the header-image for your story. (We use <a
@@ -160,7 +160,7 @@
   <div id="image" class="col-md-12"></div>
   <div class="form-floating col-md-12">
     <input type="text" class="form-control" id="tagsInput" placeholder="Tags" aria-describedby="tagsHelpBlock"
-      oninput=addPill()>
+      oninput=addPill() disabled oninput=enableDesc(this)>
     <label for="tagsInput">Tags</label -->
     <div id="tagsHelpBlock" class="form-text">
       Enter a comma-separated list of tags for your story. These will be used to help people find your story.
@@ -173,7 +173,7 @@
   </div>
   <h2><span class='text-span'>Your</span> story</h2>
   <div class="form-floating col-md-12">
-    <textarea id="input" required></textarea>
+    <textarea id="mde-input" required  disabled oninput=enableDesc(this)></textarea>
     <div class="invalid-feedback">
       You must provide a story.
     </div>
@@ -244,14 +244,28 @@
 </form>
 <script>
   let coc = false;
-  const easyMDE = new EasyMDE();
+  const easyMDE = new EasyMDE({
+    autoDownloadFontAwesome: true,
+    showIcons: ['strikethrough', 'code', 'table', 'redo', 'undo',  'clean-block', 'horizontal-rule'],
+    element: document.getElementById('mde-input'),
+  });
 
-  document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+  document.querySelector('custom-file-input').addEventListener('change', function (e) {
     var name = document.getElementById("customFileInput").files[0].name;
     var nextSibling = e.target.nextElementSibling
     nextSibling.innerText = name
   })
 
+  function enableDesc(e){
+    var foo = document.getElementsByTagName("input");
+    var t = this.event.target.id
+    for (let i = 0; i < foo.length; i++) {
+      if (foo[i].id == t) {
+        foo[i+1].disabled = false;
+        return
+      }
+    }
+  }
   function setImage(){
     // Get the image file
     const f = document.getElementById("customFileInput").files[0];
@@ -266,6 +280,26 @@
       const im = document.createElement("img")
       im.setAttribute("src", `${reader.result}`);
       d.appendChild(im);
+      var data = {
+        "name": f.name,
+        "image": `${reader.result}`,
+        "title": `${document.getElementById("titleInput").value}`
+      }
+      fetch('http://localhost:9494/submitImage', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(response => {
+          if(response.status == 200){
+            console.log("Image uploaded successfully")
+            response.json().then(data => {
+              var val = easyMDE.value;
+              val = "![image](http://localhost/" + data.location + ")";
+              easyMDE.value(val);
+              console.log(data);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     };
 
   }
@@ -318,7 +352,7 @@
       content: content
     };
     console.log(data);
-    fetch('https://devreldiaries.com:9494/submitStory', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    fetch('https://localhost:9494/submitStory', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);

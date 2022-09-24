@@ -1,4 +1,4 @@
-baseURL = 'https://devreldiaries.com/staging'
+baseURL = 'https://devreldiaries.com/'
 languageCode = 'en-us'
 title = 'DevRel 🥑 Diaries'
 theme = "avenco"
