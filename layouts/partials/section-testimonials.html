@@ -28,17 +28,23 @@
             <div class="testimonial-item">
               <div class="testimonial-content">
                 {{ if .content }}
-                  <p class="client-text">{{ .content }}</p>
+                  <p class="client-text">{{ .content  | safeHTML}}</p>
                 {{ end }}
                 <div class="client-meta">
                   {{ if .image }}
                     <div class="image-container">
+                      {{ if .link }}
+                        <a href="{{ .link }}" target="_blank" rel="noopener">
+                      {{ end }}
                       <img class="client-avatar" src="{{ .image }}" alt="{{ .name }}">
+                      {{ if .link }}
+                        </a>
+                      {{ end }}
                     </div>
                   {{ end }}
                   <div class="client-info">
                     {{ if .name }}
-                      <h3 class="client-name">{{ .name }}</h3>
+                      <h3 class="client-name">{{ .name | safeHTML}}</h3>
                     {{ end }}
                     {{ if .designation }}
                       <p class="client-designation">{{ .designation }}</p>

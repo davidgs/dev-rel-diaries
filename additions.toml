@@ -1,0 +1,11 @@
+[[menu.main]]
+      parent = "Contribute"
+      name = "Submit story"
+      url = "/submit/"
+      weight = 2
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Submit quote"
+      url = "/submit_quote/"
+      weight = 3
