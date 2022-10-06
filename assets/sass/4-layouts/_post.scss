@@ -44,11 +44,18 @@
     margin: 24px auto 0;
   }
 }
-
+.post-image__caption {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: $text-color-alt;
+  margin-bottom: 40px;
+  text-align: end;
+}
 .post-image,
 .page-image {
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 18px;
   border-radius: 30px;
   overflow: hidden;
 

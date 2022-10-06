@@ -6,6 +6,13 @@
         <a class="article__image" href="{{ .RelPermalink }}">
           <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
         </a>
+        <div class="col col-12">
+          {{ if .Params.image_caption }}
+          <div class="post-image__caption">
+            {{ .Params.image_caption | safeHTML }}
+          </div>
+          {{ end }}
+        </div>
       </div>
     {{ end }}
 

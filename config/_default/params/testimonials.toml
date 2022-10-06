@@ -1,0 +1,32 @@
+#-------------------------------
+  # Testimonials Section
+  [params.testimonials]
+    enable = true
+    testimonial__title = "<span class='text-span'>Insights</span> and Quotes"
+    testimonial__description = "Short quotes and insights from DevRel Professionals"
+
+  [[params.testimonial_item]]
+    name = "David G. Simmons"
+    link="https://twitter.com/davidgsIoT"
+    image = "/images/8FhkFR08_400x400.jpg"
+    designation = "Head of Developer Advocacy"
+    content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
+
+  [[params.testimonial_item]]
+    name = "Ann Philips"
+    image = "https://via.placeholder.com/250x250"
+    designation = "Designer"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+  [[params.testimonial_item]]
+    name = "Roger Bergson"
+    image = "https://via.placeholder.com/250x250"
+    designation = "CEO, Founder"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+
+  [[params.testimonial_item]]
+    name = "Julie Arnold"
+    image = "https://via.placeholder.com/250x250"
+    designation = "Full stack developer"
+    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+

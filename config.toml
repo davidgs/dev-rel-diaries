@@ -2,7 +2,7 @@ baseURL = 'https://devreldiaries.com/'
 languageCode = 'en-us'
 title = 'DevRel 🥑 Diaries'
 theme = "avenco"
-author = "David G. Simmons"
+author = "DevRel Diaries"
 copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
 rssLimit = 25
 
@@ -30,6 +30,26 @@ rssLimit = 25
     name = "Contribute"
     url = "/contribute/"
     weight = 3
+    hasChildren = true
+
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Code of Conduct"
+      url = "/code_of_conduct/"
+      weight = 4
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Privacy Policy"
+      url = "/privacy_policy/"
+      weight = 5
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "How to ..."
+      url = "/contribute/"
+      weight = 1
 
   [[menu.main]]
     identifier = "stories"
@@ -38,23 +58,23 @@ rssLimit = 25
     weight = 4
     hasChildren = true
 
-      [[menu.main]]
-      parent = "Pages"
-      name = "About"
-      url = "/about/"
-      weight = 1
+  [[menu.main]]
+    parent = "Pages"
+    name = "About"
+    url = "/about/"
+    weight = 1
 
-      [[menu.main]]
-      parent = "Pages"
-      name = "Stories"
-      url = "/posts/"
-      weight = 2
+  [[menu.main]]
+    parent = "Pages"
+    name = "Stories"
+    url = "/posts/"
+    weight = 2
 
-      [[menu.main]]
-      parent = "Pages"
-      name = "Code of Conduct"
-      url = "/CODE_OF_CONDUCT/"
-      weight = 2
+  [[menu.main]]
+    parent = "Pages"
+    name = "Code of Conduct"
+    url = "/CODE_OF_CONDUCT/"
+    weight = 2
 
   # Call to action button
   [params.menu.button]
@@ -83,33 +103,16 @@ rssLimit = 25
   #-------------------------------
   # Testimonials Section
   [params.testimonials]
-    enable = false
-    testimonial__title = "My Happy <span class='text-span'>Clients</span>" # Add a 'text-span' class to highlight text.
-    testimonial__description = ""
+    enable = true
+    testimonial__title = "<span class='text-span'>Insights</span> and Quotes"
+    testimonial__description = "Short quotes and insights from DevRel Professionals"
 
   [[params.testimonial_item]]
-    name = "Zaire Baptista"
-    image = "https://via.placeholder.com/250x250"
-    designation = "Traveler"
-    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
-
-  [[params.testimonial_item]]
-    name = "Ann Philips"
-    image = "https://via.placeholder.com/250x250"
-    designation = "Designer"
-    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
-
-  [[params.testimonial_item]]
-    name = "Roger Bergson"
-    image = "https://via.placeholder.com/250x250"
-    designation = "CEO, Founder"
-    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
-
-  [[params.testimonial_item]]
-    name = "Julie Arnold"
-    image = "https://via.placeholder.com/250x250"
-    designation = "Full stack developer"
-    content = "Quamquam id quidem, infinitum est in hac urbe, Ita multo sanguine profuso in laetitia et in victoria est mortuus. Atqui pugnantibus et contrariis consiliisque."
+    name = "David G. Simmons"
+    link="https://twitter.com/davidgsIoT"
+    image = "/images/8FhkFR08_400x400.jpg"
+    designation = "Head of Developer Advocacy"
+    content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
 
 
   #-------------------------------
