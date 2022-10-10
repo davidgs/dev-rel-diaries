@@ -47,19 +47,19 @@ rssLimit = 25
 
     [[menu.main]]
       parent = "Contribute"
-      name = "Contributions"
+      name = "How to Contribute"
       url = "/contribute/"
       weight = 1
 
     [[menu.main]]
       parent = "Contribute"
-      name = "Submit story"
+      name = "Submit Your Story"
       url = "/submit/"
       weight = 2
 
     [[menu.main]]
       parent = "Contribute"
-      name = "Submit quote"
+      name = "Submit a Quote"
       url = "/submit_quote/"
       weight = 3
 

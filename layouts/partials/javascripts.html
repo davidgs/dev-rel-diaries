@@ -1,10 +1,20 @@
 {{ $script := resources.Get "js/scripts.js" }}
 {{ $commonJs := resources.Get "js/common.js" }}
+{{ $editor := resources.Get "js/editor.js" }}
+{{ $wc := resources.Get "js/wc.js" }}
+{{ $quote := resources.Get "js/wc-quote.js" }}
 
 {{ if .Site.IsServer }}
 <script src="{{ $script.Permalink }}"></script>
 <script src="{{ $commonJs.Permalink }}"></script>
+<script src="{{ $editor.Permalink }}"></script>
+<script src="{{ $wc.Permalink }}"></script>
+<script src="{{ $quote.Permalink }}"></script>
 {{ else }}
 <script src="{{ ($script | minify | fingerprint).RelPermalink }}"></script>
 <script src="{{ ($commonJs | minify | fingerprint).RelPermalink }}"></script>
+<script src="{{ ($editor | minify | fingerprint).RelPermalink }}"></script>
+<script src="{{ ($wc | minify | fingerprint).RelPermalink }}"></script>
+<script src="{{ ($quote | minify | fingerprint).RelPermalink }}"></script>
+
 {{ end }}

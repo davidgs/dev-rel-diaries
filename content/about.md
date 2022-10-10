@@ -10,6 +10,8 @@ date: 2021-07-15
 
 We are DevRel Professionals just like you. We are passionate about Developer Relations as well as the health and happiness of others. We want to make discussing mental health and wellness ok within DevRel communities so we've started this experiment to do just that.
 
+We're not entirely certain where this will lead, but as a first step we wanted to provide a platform where DevRel professionals can share their stories about Mental Health in DevRel. We hope that this will help others feel more comfortable sharing their own stories and experiences.
+
 This project is carefully and lovingly created and curated by
 - Rain Leander [![web](/images/www.png)](https://therain.dev) [![twitter](/images/twit-32.png)](https://twitter.com/rainleander)
 - David G. Simmons [![web](/images/www.png)](https://davidgs.com) [![twitter](/images/twit-32.png)](https://twitter.com/davidgsIoT)

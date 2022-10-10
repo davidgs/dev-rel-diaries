@@ -4,6 +4,10 @@
     content: "" !important;
   }
 
+  .image-caption {
+    display: none !important;
+  }
+
   .custom-file {
     overflow: hidden;
   }
@@ -60,6 +64,57 @@
     color: #ffffff;
   }
 
+  .form-label-pos {
+    position: absolute;
+    margin-left: 20px;
+  }
+
+  .image-div-format {
+    width: 200px !important;
+    padding-top: 25px !important;
+  }
+
+  .close-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 150px;
+  }
+
+  .upload-image {
+    width: 30%;
+    display: inline-block;
+  }
+
+  .header-image-div-format {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding-top: 25px;
+    background-color: #ffffff;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  .avatar-image-div-format {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    padding-top: 25px;
+    background-color: #ffffff;
+    display: inline-block;
+  }
+  .close-pos-header {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 10px;
+  }
+
+  .use-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-right: 2px;
+  }
+
   .close {
     position: relative;
     right: 10px;
@@ -95,28 +150,34 @@
   }
 </style>
 <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <h2><span class='text-span'>Time</span> to tell your story</h2>
 <p><span class='text-span'>Use</span> the form below to create a new story. You can use the editor to format your story
   and add images.</p>
-<p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely.</p>
-<form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate>
-  <div class="form-floating col-md-6">
+<p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely. As you fill out the fields, disabled fields will automatically become available.</p>
+<form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate onsubmit=submitForm()>
+  <!-- Title -->
+  <div class="form-floating col-md-6" data-bs-toggle="This will also be the 'slug' for your post">
     <input type="text" class="form-control" id="titleInput" placeholder="The title of your story"
-      aria-describedby="titleHelpBlock" required oninput=enableDesc(this)>
-    <label for="titleInput">Title</label>
+      aria-describedby="titleHelpBlock" required oninput=enableNextField(this)
+      data-bs-toggle="This will also be the 'slug' for your post">
+    </input>
+    <label for="titleInput" data-bs-toggle="This will also be the 'slug' for your post">Post Title
+    </label>
     <div id="titleHelpBlock" class="form-text">
-      Give your story a compelling title. This field is required.
+      Give your story a compelling title. This field is <strong>required.</strong>
     </div>
   </div>
+  <!-- Description -->
   <div class="form-floating col-md-6">
     <input type="text" class="form-control" id="descriptionInput" placeholder="Describe your story"
-      aria-describedby="descriptionHelpBlock" required disabled oninput=enableDesc(this)>
-    <label for="descriptionInput">Description</label>
+      aria-describedby="descriptionHelpBlock" required disabled oninput=enableNextField(this)>
+    <label for="descriptionInput">Post Description
+    </label>
     <div id="descriptionHelpBlock" class="form-text">
       Give your story a brief description. This field is required.
     </div>
@@ -127,9 +188,11 @@
       You must provide a description for your story.
     </div>
   </div>
+  <!-- Name -->
   <div class="form-floating col-md-12">
     <input type="text" class="form-control" id="nameInput" placeholder="Your name or pseudonym"
-      aria-describedby="nameHelpBlock" required disabled oninput=enableDesc(this)>
+      aria-describedby="nameHelpBlock" required disabled oninput=enableNextField(this)>
+    </input>
     <label for="nameInput">Name or Pseudonym</label>
     <div id="nameHelpBlock" class="form-text">
       You do <strong>not</strong> have to supply your real name. Please feel free to use an anonymous pseudonym if you
@@ -142,38 +205,105 @@
       Looks good!
     </div>
   </div>
-  <div class="input-group input-group-lg col-md-12">
-      <input type="file" class="form-control" id="customFileInput" placeholder="Choose your Header Image" aria-describedby="imageHelpBlock"
-      required onchange=setImage()  disabled oninput=enableDesc(this)></input>
-    <!--label for="imageInput">Header Image</label -->
-    <div id="imageHelpBlock" class="form-text">
-      Enter the full URL to an image you'd like to use as the header-image for your story. (We use <a
-        href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
-    </div>
-    <div class="invalid-feedback">
-      You must provide a header image for your story.
-    </div>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
-  </div>
-  <div id="image" class="col-md-12"></div>
+  <!-- Tags -->
   <div class="form-floating col-md-12">
     <input type="text" class="form-control" id="tagsInput" placeholder="Tags" aria-describedby="tagsHelpBlock"
-      oninput=addPill() disabled oninput=enableDesc(this)>
-    <label for="tagsInput">Tags</label -->
+      oninput=addPill() disabled oninput=enableNextField(this) onblur=addLastPill()>
+    </input>
+    <label for="tagsInput">Tags (i.e. 'mental health' or 'redemption story')</label>
     <div id="tagsHelpBlock" class="form-text">
       Enter a comma-separated list of tags for your story. These will be used to help people find your story.
     </div>
     <div class="valid-feedback">
       Looks good!
     </div>
+    <div class="form-floating col-md-12" id="tags-div">
+    </div>
   </div>
-  <div class="form-floating col-md-12" id="tags-div">
+  <!-- Header Image -->
+  <div class="input-group input-group-lg col-md-12">
+    <label for="headerFileInput" class="form-label"><h3>Choose a header image</h3></label>
+  </div>
+  <div class="input-group input-group-lg col-md-12">
+    <input
+      type="file"
+      class="form-control"
+      id="headerFileInput"
+      aria-describedby="headerImageHelpBlock"
+      required
+      disabled
+      onchange=setImage(header)
+      oninput=enableNextField(this)
+      accept="image/*">
+    </input>
+    <div class="invalid-feedback">
+      You must provide a header image for your story.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+
+  </div>
+   <div
+      id="headerImageHelpBlock"
+      class="form-text">
+        Choose an image you'd like to use as the header-image for your story.
+        (We use <a href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
+    </div>
+  <div
+      id="header-image"
+      class="col-md-12">
+  </div>
+  <!-- Header image caption -->
+  <div id="headerImageCaption" class="form-floating col-md-12" >
+    <input type="text" class="form-control" id="captionInput" placeholder="Header Image Caption"
+     aria-describedby="captionHelpBlock" required disabled oninput=enableNextField(this)>
+    </input>
+    <label for="captionInput">Caption</label>
+    <div id="captionHelpBlock" class="form-text">
+    This will be the caption for your neader image. You may use simple html here.
+    </div>
+    <div class="invalid-feedback">
+      You must provide either your real name or a pseudonym before submitting.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <!-- Post Images -->
+  <div class="input-group input-group-lg col-md-12">
+    <label for="postFileInput" class="form-label"><h3>Choose any images you'd like to include</h3></label>
+  </div>
+  <div class="input-group input-group-lg col-md-12">
+    <input
+      type="file"
+      class="form-control"
+      id="postFileInput"
+      aria-describedby="postImageHelpBlock"
+      onchange=setImage(post)
+      disabled
+      accept="image/*">
+    </input>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+
+  </div>
+   <div
+      id="postImageHelpBlock"
+      class="form-text">
+        Add images that you'd like to add to your story. You can add as many images as you would like.
+        (We use <a href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
+    </div>
+  <div
+      id="post-image"
+      class="col-md-12">
   </div>
   <h2><span class='text-span'>Your</span> story</h2>
+  <!-- Post Content -->
   <div class="form-floating col-md-12">
-    <textarea id="mde-input" required  disabled oninput=enableDesc(this)></textarea>
+    <textarea id="mde-input" required disabled oninput=enableNextField(this)>
+    </textarea>
     <div class="invalid-feedback">
       You must provide a story.
     </div>
@@ -187,23 +317,25 @@
   </div>
   <div class="form-floating col-md-12">
     <span class='text-span'>The</span> following fields are <strong>not</strong> required.
-    <!--p><span class='text-span'>If</span> you do not wish to provide any of the following information, please leave the
-    fields blank.</p -->
   </div>
+  <!-- email, if any -->
   <div class="form-floating col-md-6">
     <input type="email" class="form-control" id="emailInput" placeholder="name@example.com"
       aria-describedby="emailHelpBlock">
+    </input>
     <label for="emailInput">Email address</label>
     <div id="emailHelpBlock" class="form-text">
       You do <strong>not</strong> have to supply your email address. If you do, we will never share it with anyone
       else.
     </div>
   </div>
+  <!-- Twitter Input -->
   <div class="form-floating col-md-6">
     <label for="twitterUsername" class="form-label">Twitter Handle</label>
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">@</span>
       <input type="text" class="form-control" id="twitterUsername" aria-describedby="twitterUsernameHelpBlock">
+      </input>
       <div id="twitterUsernameHelpBlock" class="form-text">
         You do <strong>not</strong> have to supply your twitter handle. If you do, we will link your submission to
         your
@@ -211,17 +343,42 @@
       </div>
     </div>
   </div>
+  <!-- Website Input -->
   <div class="form-floating col-md-12">
     <input type="url" class="form-control" id="webInput" placeholder="Your website" aria-describedby="webHelpBlock">
+    </input>
     <label for="webInput">Your website</label>
     <div id="webHelpBlock" class="form-text">
       You do <strong>not</strong> have to supply this. If you do, we will link your submission back to this address.
     </div>
   </div>
+  <!-- user avatar -->
+  <div class="input-group input-group-lg col-md-12">
+    <input
+      type="file"
+      class="form-control"
+      id="avatarFileInput"
+      aria-describedby="avatarImageHelpBlock"
+      imgType="avatar"
+      onchange=setImage(avatar)
+      accept="image/*">
+    </input>
+  </div>
+   <div
+      id="avatarImageHelpBlock"
+      class="form-text">
+        Choose an image you'd like to use as your 'avatar'. This will be displayed next to your submission.
+    </div>
+  <div
+      id="avatar-image"
+      class="col-md-12">
+  </div>
+  <!-- Consent and submit/clear section -->
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <div class="form-floating col-md-8">
-      <div class="form-check form-check-reverse">
-        <input class="form-check-input" type="checkbox" value="getCOC()" id="reverseCheck1" onchange=checkCOC()>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="reverseCheck1" onchange=checkCOC()>
+        </input>
         <label class="form-check-label" for="reverseCheck1">
           I have read and agree to the <a href="/code_of_conduct" target="_blank">Code of Conduct</a> and <a
             href="/privacy_policy" target="_blank">Privacy Policy</a>.
@@ -242,137 +399,3 @@
     </div>
   </div>
 </form>
-<script>
-  let coc = false;
-  const easyMDE = new EasyMDE({
-    autoDownloadFontAwesome: true,
-    showIcons: ['strikethrough', 'code', 'table', 'redo', 'undo',  'clean-block', 'horizontal-rule'],
-    element: document.getElementById('mde-input'),
-  });
-
-  document.querySelector('custom-file-input').addEventListener('change', function (e) {
-    var name = document.getElementById("customFileInput").files[0].name;
-    var nextSibling = e.target.nextElementSibling
-    nextSibling.innerText = name
-  })
-
-  function enableDesc(e){
-    var foo = document.getElementsByTagName("input");
-    var t = this.event.target.id
-    for (let i = 0; i < foo.length; i++) {
-      if (foo[i].id == t) {
-        foo[i+1].disabled = false;
-        return
-      }
-    }
-  }
-  function setImage(){
-    // Get the image file
-    const f = document.getElementById("customFileInput").files[0];
-    console.log("setImage: " + document.getElementById("customFileInput").files[0]);
-    // Create a new FileReader
-    const reader = new FileReader();
-    // Read the file
-    reader.readAsDataURL(f);
-    // When it's loaded, set image data as background of div
-    reader.onload = function () {
-      const d = document.getElementById("image")
-      const im = document.createElement("img")
-      im.setAttribute("src", `${reader.result}`);
-      d.appendChild(im);
-      var data = {
-        "name": f.name,
-        "image": `${reader.result}`,
-        "title": `${document.getElementById("titleInput").value}`
-      }
-      fetch('http://localhost:9494/submitImage', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-        .then(response => {
-          if(response.status == 200){
-            console.log("Image uploaded successfully")
-            response.json().then(data => {
-              var val = easyMDE.value;
-              val = "![image](http://localhost/" + data.location + ")";
-              easyMDE.value(val);
-              console.log(data);
-            });
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    };
-
-  }
-  function addPill() {
-    const tags = document.getElementById("tagsInput").value;
-    console.log(document.getElementById("tagsInput").value);
-    if (tags.includes(",")) {
-      const tagsArray = tags.split(",");
-      const tagsDiv = document.getElementById("tags-div");
-      const pill = document.createElement("button");
-      pill.classList.add("pill--purple");
-      pill.setAttribute("type", "button");
-      pill.innerText = tagsArray[0];
-      pill.innerHTML += `<span class="close"></span>`;
-      tagsDiv.appendChild(pill);
-      pill.addEventListener("click", (e) => {
-        const p = e.target.parentElement;
-        e.currentTarget.remove();
-      });
-      document.getElementById("tagsInput").value = "";
-    }
-  }
-
-  function clearForm() {
-    easyMDE.value('');
-  }
-  function onSubmit() {
-    console.log("submitting");
-  }
-
-  document.getElementById("storyForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const forms = document.querySelectorAll('.needs-validation')
-    const title = document.getElementById("titleInput").value;
-    const description = document.getElementById("descriptionInput").value;
-    const image = document.getElementById("imageInput").value;
-    const email = document.getElementById("emailInput").value;
-    const twitter = document.getElementById("twitterUsername").value;
-    const name = document.getElementById("nameInput").value;
-    const web = document.getElementById("webInput").value;
-    const content = easyMDE.value();
-    const data = {
-      title: title,
-      description: description,
-      image: image,
-      email: email,
-      twitter: twitter,
-      name: name,
-      web: web,
-      content: content
-    };
-    console.log(data);
-    fetch('https://localhost:9494/submitStory', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  });
-
-  function checkCOC() {
-    if (coc) {
-      coc = false;
-    } else {
-      coc = true;
-    }
-    console.log(coc);
-    if (coc) {
-      document.getElementById("submitButton").removeAttribute("disabled");
-    } else {
-      document.getElementById("submitButton").setAttribute("disabled", "disabled");
-    }
-  }
-</script>

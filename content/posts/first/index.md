@@ -7,7 +7,7 @@ description: "Be our first story"
 author: David G. Simmons
 author_link: "https://davidgs.com/"
 author_twitter: "davidgsIoT"
-author_avatar: "images/profile-pic.png"
+author_avatar: "posts/first/images/profile-pic.png"
 ---
 
 ## <span class='text-span'>Be</span> the first!

@@ -2,7 +2,24 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="apple-touch-icon-precomposed"
+    sizes="57x57" href="{{ "favicon-apple-touch-114.png" | relURL }}">
+
+<link rel="apple-touch-icon-precomposed"
+    sizes="114x114" href="{{ "favicon-apple-touch-114.png" | relURL }}">
+
+<link rel="apple-touch-icon-precomposed"
+    sizes="72x72" href="{{ "favicon-apple-touch-144.png" | relURL }}">
+
+<link rel="apple-touch-icon-precomposed"
+    sizes="144x144" href="{{ "favicon-apple-touch-144.png"| relURL }}">
+
+<link rel="icon" type="image/vnd.microsoft.icon"
+    sizes="32x32 48x48" href="{{ "favicon.ico" | relURL }}">
+
+<link rel="icon" sizes="128x128" href="{{ "favicon.icns" | relURL }}">
+
+<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
 
   <title>{{ if not .IsHome }}{{ humanize .Title | safeHTML }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
@@ -36,7 +53,11 @@
 
   <!-- CSS -->
   {{ with resources.Get "sass/main.scss" | toCSS | minify }}
-  <style>{{ .Content | safeCSS }}</style>
+  <style>{{ .Content | safeCSS }}
+  .custom-tooltip {
+  --bs-tooltip-bg: linear-gradient(135deg, #4235d0 38%, #f969cd 100%);;
+}
+</style>
   {{ end }}
 
 </head>
