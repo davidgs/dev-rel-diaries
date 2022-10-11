@@ -150,7 +150,12 @@ rssLimit = 25
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-      
+
+[markup.highlight]
+  codeFences = true
+  guessSyntax = true
+  noClasses = false
+
 # Testimonials Section
   [params.testimonials]
     enable = true
@@ -164,9 +169,3 @@ rssLimit = 25
     designation = "Head of Developer Advocacy"
     content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
 
-
-
-[markup.highlight]
-  codeFences = true
-  guessSyntax = true
-  noClasses = false
