@@ -121,7 +121,8 @@ rssLimit = 25
     mailchimp__identifier = "frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3" # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
     mailchimp__button__text = "Subscribe"
 
-  # Comment Section (Disqus)
+
+# Comment Section (Disqus)
   [params.disqus]
     enable = false
     disqusShortname = "anvodstudio-demo"
@@ -148,11 +149,12 @@ rssLimit = 25
   guessSyntax = true
   noClasses = false
 
-  # Testimonials Section
+
+# Testimonials Section
   [params.testimonials]
     enable = true
     testimonial__title = "<span class='text-span'>Insights</span> and Quotes"
-    testimonial__description = "<span class='text-span'>Short</span> quotes and insights from DevRel Professionals"
+    testimonial__description = "Short quotes and insights from DevRel Professionals"
 
   [[params.testimonial_item]]
     name = "David G. Simmons"
