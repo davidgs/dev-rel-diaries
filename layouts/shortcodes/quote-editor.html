@@ -1,0 +1,383 @@
+
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<style>
+  .custom-file-input.selected:lang(en)::after {
+    content: "" !important;
+  }
+
+  .image-caption {
+    display: none !important;
+  }
+
+  .custom-file {
+    overflow: hidden;
+  }
+
+  .custom-file-input {
+    white-space: nowrap;
+  }
+
+  .pill {
+    font-size: 12px;
+    font-family: "Readex Pro", sans-serif;
+    padding: 5px 10px;
+    padding-right: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: -1px;
+    margin-bottom: 5px;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background: #dddddd;
+    cursor: pointer;
+  }
+
+  .pill:not(.pill--selected):hover {
+    background: #cccccc;
+  }
+
+  .pill--selected {
+    background: #009578;
+    color: #ffffff;
+  }
+
+  .pill--purple {
+    font-size: 12px;
+    font-family: "Readex Pro", sans-serif;
+    padding: 5px 10px;
+    padding-right: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: -1px;
+    margin-bottom: 5px;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #4235d0 38%, #f969cd 100%);
+    color: #ffffff;
+  }
+
+  .form-label-pos {
+    position: absolute;
+    margin-left: 20px;
+  }
+
+  .image-div-format {
+    width: 200px !important;
+    padding-top: 25px !important;
+  }
+
+  .close-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 150px;
+  }
+
+  .upload-image {
+    width: 30%;
+    display: inline-block;
+  }
+
+  .header-image-div-format {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding-top: 25px;
+    background-color: #ffffff;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  .avatar-image-div-format {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    padding-top: 25px;
+    background-color: #ffffff;
+    display: inline-block;
+  }
+  .close-pos-header {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 10px;
+  }
+
+  .use-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-right: 2px;
+  }
+
+  .close {
+    position: relative;
+    right: 10px;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+    z-index: 99;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    opacity: 0.3;
+  }
+
+  .close:before,
+  .close:after {
+    position: absolute;
+    left: 20px;
+    content: ' ';
+    height: 8px;
+    width: 2px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+
+  .close:before {
+    transform: rotate(45deg);
+  }
+
+  .close:after {
+    transform: rotate(-45deg);
+  }
+</style>
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+<h2><span class='text-span'>Share</span> some of your wisdom</h2>
+<p><span class='text-span'>Use</span> the form below to share a short quote or phrase.</p>
+<p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely. As you fill out the fields, disabled fields will automatically become available.</p>
+<form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate onsubmit=submitForm()>
+  <!-- Name -->
+  <div class="input-group input-group-lg col-md-12" >
+    <h4><span class='text-span'>Your</span> name or pseudonym</h4>
+  </div>
+  <div class="input-group input-group-lg col-md-12" style="margin-top: -5px;">
+    <input type="text" class="form-control" id="nameInput" placeholder="Harriet Tubman" required
+      aria-describedby="nameHelpBlock" required oninput=enableNextField(this)>
+    </input>
+
+    <div class="invalid-feedback">
+      You must provide either your real name or a pseudonym before submitting.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div id="nameHelpBlock" class="form-text">
+      You do <strong>not</strong> have to supply your real name. Please feel free to use an anonymous pseudonym if you
+      wish.
+    </div>
+  <!-- Description -->
+  <div class="input-group input-group-lg col-md-12" >
+    <h4><span class='text-span'>Your</span> title or tag-line</h4>
+  </div>
+  <div class="input-group input-group-lg col-md-12" style="margin-top: -5px;">
+    <input
+      type="text"
+      class="form-control"
+      id="descriptionInput"
+      placeholder="Master of Disaster"
+      aria-describedby="descriptionHelpBlock"
+      required
+      disabled
+      oninput=enableNextField(this)>
+    </input>
+
+    <div class="invalid-feedback">
+      You must provide either your real title or an anonymous tag-line before submitting.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div id="descriptionHelpBlock" class="form-text">
+      You do <strong>not</strong> have to supply your real job title. Please feel free to use an anonymous tag-line if you
+      wish.
+  </div>
+  <!-- user avatar -->
+  <div class="input-group input-group-lg col-md-12" >
+    <h4><span class='text-span'>Your</span> Avatar</h4>
+  </div>
+
+  <div class="input-group input-group-lg col-md-12" style="margin-top: -5px;">
+    <input
+      type="file"
+      class="form-control"
+      id="avatarFileInput"
+      aria-describedby="avatarImageHelpBlock"
+      imgType="avatar"
+      onchange=setImage(avatar)
+      accept="image/*"
+      required
+      disabled
+      oninput=enableNextField(this)>
+    </input>
+  </div>
+   <div
+      id="avatarImageHelpBlock"
+      class="form-text">
+        Choose an image you'd like to use as your 'avatar'. This will be displayed next to your submission.
+    </div>
+  <div
+      id="avatar-image"
+      class="col-md-12">
+  </div>
+  <h4><span class='text-span'>Your</span> words of wisdom (limited to <span class="text-span">250</span> words)</h4>
+  <!-- Post Content -->
+  <div class="form-floating col-md-12">
+    <textarea id="mde-quote-input" required disabled oninput=enableNextField(this)>
+    </textarea>
+    <div class="invalid-feedback">
+      You must provide a story.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div id="storyHeaderHelpBlock" class="form-text">
+      Write your quote here in Markdown. The browser will autosave the contents for you so you don't have to worry about
+      losing your work. When you're happy with your submission, click the submit button. This editor is limited to 250 words. Have more to say? Use the [Submit a story](/submit) form.
+    </div>
+  </div>
+  <div class="form-floating col-md-12">
+    <span class='text-span'>The</span> following fields are <strong>not</strong> required.
+  </div>
+  <!-- 1/2 column headers -->
+  <div class=" col-md-6"  >
+    <h4><span class='text-span'>Email</span> address</h4>
+  </div>
+  <div class="col-md-6"  >
+    <h4><span class='text-span'>Twitter</span> handle</h4>
+  </div>
+  <!-- 1/2 column inputs -->
+  <div class="input-group has-validation input-group-lg col-md-6" style="margin-top: -5px; width: 50%;">
+    <input type="email" class="form-control" placeholder="healthy@example.com" id="emailInput"
+      aria-describedby="emailHelpBlock">
+    </input>
+  </div>
+  <div class="input-group has-validation input-group-lg col-md-6" style="margin-top: -5px; width: 50%">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" id="twitterUsername" placeholder="DevRelDiaries" aria-describedby="twitterUsernameHelpBlock">
+      </input>
+  </div>
+  <!-- 1/2 column help-texts -->
+  <div class="input-group col-md-6" style="margin-top: -5px; width: 50%">
+    <div id="emailHelpBlock" class="form-text">
+      You do <strong>not</strong> have to supply your email address. If you do, we will never share it with anyone
+      else.
+    </div>
+  </div>
+  <div class="input-group col-md-6" style="margin-top: -5px; width: 50%">
+    <div id="twitterUsernameHelpBlock" class="form-text">
+        You do <strong>not</strong> have to supply your twitter handle. If you do, we will link your submission to your
+          twitter account.
+    </div>
+  </div>
+  <!-- Website Input -->
+  <div class="input-group input-group-lg col-md-12">
+    <h4><span class='text-span'>Your</span> website</h4>
+  </div>
+  <div class="col-md-12 input-group has-validation input-group-lg" style="margin-top: -5px;">
+    <input type="url" class="form-control" id="webInput" placeholder="https://mysite.com" aria-describedby="webHelpBlock">
+    </input>
+
+  </div>
+  <div id="webHelpBlock" class="form-text">
+        You do <strong>not</strong> have to supply this. If you do, we will link your submission back to this address.
+  </div>
+  <!-- Consent and submit/clear section -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="form-floating col-md-8">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="reverseCheck1" onchange=checkCOC()>
+        </input>
+        <label class="form-check-label" for="reverseCheck1">
+          I have read and agree to the <a href="/code_of_conduct" target="_blank">Code of Conduct</a> and <a
+            href="/privacy_policy" target="_blank">Privacy Policy</a>.
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-floating col-md-2">
+      <button id="submitButton" class="btn btn-primary me-md-2" type="submit" disabled>Submit</button>
+    </div>
+    <div class="form-floating col-md-2">
+      <button class="btn btn-danger" type="button" onClick=clearForm()>Clear</button>
+    </div>
+  </div>
+</form>
+<script>
+    const quoteCount = document.getElementById('quote-count');
+  const quoteInput = document.getElementById('mde-quote-input');
+  var globalWordCounter = 0;
+  const QUOTE_WORD_LIMIT = 250;
+
+  input.addEventListener('keydown', function (e) {
+    if (globalWordCounter > QUOTE_WORD_LIMIT && e.code !== "Backspace") {
+      e.preventDefault();
+      return alert("You have reached the word limit");
+    }
+  });
+
+  quoteInput.addEventListener('keyup', function (e) {
+    wordCounter(e.target.value);
+  });
+
+  function isWord(str) {
+    var alphaNumericFound = false;
+    for (var i = 0; i < str.length; i++) {
+      const code = str.charCodeAt(i);
+      if ((code > 47 && code < 58) || // numeric (0-9)
+        (code > 64 && code < 91) || // upper alpha (A-Z)
+        (code > 96 && code < 123)) { // lower alpha (a-z)
+        alphaNumericFound = true;
+        return alphaNumericFound;
+      }
+    }
+    return alphaNumericFound;
+  }
+
+  function wordCounter(text) {
+    var text = quoteInput.value.replace(/\n/g, " ");
+    var charCount = 0;
+    for (var i = 0; i < text.length; i++) {
+      charCount++;
+    }
+    text = text.split(' ');
+    var wordCount = 0;
+    for (var i = 0; i < text.length; i++) {
+      if (!text[i] == ' ' && isWord(text[i])) {
+        wordCount++;
+      }
+    }
+    var wordcharCount = wordCount.toString() + " Character Count: " + charCount.toString();
+    globalWordCounter = wordcharCount;
+    quoteCount.innerText = wordcharCount;
+  }
+
+</script>
+{{ $quoteEditor := resources.Get "js/quote-editor.js" }}
+
+{{ if .Site.IsServer }}
+<script src="{{ $quoteEditor.Permalink }}"></script>
+{{ else }}
+<script src="{{ ($quoteEditor | minify | fingerprint).RelPermalink }}"></script>
+{{ end }}

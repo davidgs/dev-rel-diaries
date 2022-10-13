@@ -1,21 +1,482 @@
-<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-<textarea id="input"></textarea>
-<script>
-  const easyMDE = new EasyMDE();
-</script>
-<button type="button" class="btn btn-primary" onClick=submitForm()>Submit</button>
-<button type="button" class="btn btn-danger" onClick=clearForm()>Clear</button>
-<script>
-  function clearForm() {
-    easyMDE.value('');
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<style>
+  .custom-file-input.selected:lang(en)::after {
+    content: "" !important;
   }
-  function submitForm() {
-    console.log(easyMDE.value());
+
+  .image-caption {
+    display: none !important;
   }
+
+  .custom-file {
+    overflow: hidden;
+  }
+
+  .custom-file-input {
+    white-space: nowrap;
+  }
+
+  .pill {
+    font-size: 12px;
+    font-family: "Readex Pro", sans-serif;
+    padding: 5px 10px;
+    padding-right: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: -1px;
+    margin-bottom: 5px;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background: #dddddd;
+    cursor: pointer;
+  }
+
+  .pill:not(.pill--selected):hover {
+    background: #cccccc;
+  }
+
+  .pill--selected {
+    background: #009578;
+    color: #ffffff;
+  }
+
+  .pill--purple {
+    font-size: 12px;
+    font-family: "Readex Pro", sans-serif;
+    padding: 5px 10px;
+    padding-right: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: -1px;
+    margin-bottom: 5px;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #4235d0 38%, #f969cd 100%);
+    color: #ffffff;
+  }
+
+  .form-label-pos {
+    position: absolute;
+    margin-left: 20px;
+  }
+
+  .image-div-format {
+    width: 200px !important;
+    padding-top: 25px !important;
+  }
+
+  .close-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 150px;
+  }
+
+  .upload-image {
+    width: 30%;
+    display: inline-block;
+  }
+
+  .header-image-div-format {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding-top: 25px;
+    background-color: #ffffff;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  .avatar-image-div-format {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    padding-top: 25px;
+    background-color: #ffffff;
+    display: inline-block;
+  }
+  .close-pos-header {
+    margin-top: 2px;
+    position: absolute;
+    margin-left: 10px;
+  }
+
+  .use-pos {
+    margin-top: 2px;
+    position: absolute;
+    margin-right: 2px;
+  }
+
+  .close {
+    position: relative;
+    right: 10px;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+    z-index: 99;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    opacity: 0.3;
+  }
+
+  .close:before,
+  .close:after {
+    position: absolute;
+    left: 20px;
+    content: ' ';
+    height: 8px;
+    width: 2px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+
+  .close:before {
+    transform: rotate(45deg);
+  }
+
+  .close:after {
+    transform: rotate(-45deg);
+  }
+</style>
+
+<h2><span class='text-span'>Time</span> to tell your story</h2>
+<p><span class='text-span'>Use</span> the form below to create a new story. You can use the editor to format your story
+  and add images.</p>
+<p><span class='text-span'>These</span> first few fields are mandatory so please fill them out completely. As you fill out the fields, disabled fields will automatically become available.</p>
+<form id="storyForm" name="storyForm" class="row g-3 needs-validation" novalidate onsubmit=submitForm()>
+  <!-- Title -->
+  <div class="input-group input-group-lg col-md-6" style="width: 50%;">
+      <h4 style="margin-bottom: 5px; width: 50%;"><span class='text-span'>Title</span> of your story</h4>
+  </div>
+  <div class="input-group input-group-lg col-md-6" style="width: 50%" >
+    <h4 style="margin-bottom: 5px; width: 50%;"><span class='text-span'>Story</span> Description</h4>
+  </div>
+  <div class="input-group  has-validation input-group-lg col-md-6" style="width: 50%;">
+    <input type="text" class="form-control" id="titleInput" placeholder="My Compelling Story of Hope"
+      aria-describedby="titleHelpBlock" required oninput=enableNextField(this)
+      data-bs-toggle="This will also be the 'slug' for your post">
+    </input>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      You absolutely <strong>must</strong> provide a title for your story.
+    </div>
+  </div>
+  <div class="input-group has-validation input-group-lg col-md-6" style="width: 50%;">
+    <input type="text" class="form-control" id="descriptionInput" placeholder="If you've lost hope, this story will help"
+    aria-describedby="descriptionHelpBlock" required disabled oninput=enableNextField(this)>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      You really do have to provide a description for your story.
+    </div>
+  </div>
+  <div id="titleHelpBlock" class="form-text" style="width: 50%">
+      Give your story a compelling title. This field is <strong>required.</strong>
+  </div>
+  <!-- Description -->
+  <div id="descriptionHelpBlock" class="form-text" style="width: 50%;">
+    Give your story a brief description. This field is required.
+  </div>
+  <!-- Name -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Your</span> name or pseudonym</h4>
+  </div>
+  <div class="input-group has-validation input-group-lg col-md-12" style="margin-top: -10px;">
+    <input type="text" class="form-control" id="nameInput" placeholder="Ada Lovelace"
+      aria-describedby="nameHelpBlock" required disabled oninput=enableNextField(this)>
+    </input>
+    <div class="invalid-feedback">
+      You must provide <i>either</i> your real name or a pseudonym before submitting. Rules is rules. 😛
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div id="nameHelpBlock" class="form-text">
+      You do <strong>not</strong> have to supply your real name. Please feel free to use an anonymous pseudonym if you
+      wish.
+    </div>
+  <!-- Header Image -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class="text-span">Choose</span> a header image</h4>
+  </div>
+  <div class="input-group has-validation input-group-lg col-md-12" style="margin-top: -10px">
+    <input
+      type="file"
+      class="form-control"
+      id="headerFileInput"
+      aria-describedby="headerImageHelpBlock"
+      required
+      disabled
+      onchange=setImage(header)
+      oninput=enableNextField(this)
+      accept="image/*">
+    </input>
+    <div class="invalid-feedback">
+      You must provide a header image for your story. We want things to look pretty! 😊
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+   <div
+      id="headerImageHelpBlock"
+      class="form-text">
+        Choose an image you'd like to use as the header-image for your story.
+        (We use <a href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
+    </div>
+  <div
+      id="header-image"
+      class="col-md-12">
+  </div>
+  <!-- Header image caption -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Caption</span> for your image</h4>
+  </div>
+  <div id="headerImageCaption" class="input-group input-group-lg has-validation col-md-12" style="margin-top:-10px;">
+    <input type="text" class="form-control" id="captionInput" placeholder="Header Image Caption"
+     aria-describedby="captionHelpBlock" required disabled oninput=enableNextField(this)>
+    </input>
+
+    <div class="invalid-feedback">
+      You must provide A caption for your header image. It's all about the consistency! 😊
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div id="captionHelpBlock" class="form-text">
+    This will be the caption for your neader image. You may use simple html here.
+    </div>
+  <!-- Post Images -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Choose</span> any images you'd like to include</h4>
+  </div>
+  <div class="input-group input-group-lg col-md-12" style="margin-top: -10px;">
+    <input
+      type="file"
+      class="form-control"
+      id="postFileInput"
+      aria-describedby="postImageHelpBlock"
+      onchange=setImage(post)
+      disabled
+      accept="image/*">
+    </input>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+   <div
+      id="postImageHelpBlock"
+      class="form-text">
+        Add images that you'd like to add to your story. You can add as many images as you would like.
+        (We use <a href="https://unsplash.com/" target="_blank">Unsplash</a> for our images.)
+    </div>
+  <div
+      id="post-image"
+      class="col-md-12">
+  </div>
+    <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+  <h3><span class='text-span'>Your</span> story</h3>
+  </div>
+  <!-- Post Content -->
+  <div class="form-floating col-md-12" style="margin-top: -10px;">
+    <textarea id="mde-input" required disabled oninput=enableNextField(this)>
+    </textarea>
+    <div class="invalid-feedback">
+      You must provide a story.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div id="storyHeaderHelpBlock" class="form-text">
+      Write your story here in <a href="https://www.markdownguide.org" target="_blank">Markdown</a>. The browser will autosave the contents for you so you don't have to worry about losing your work. When you're happy with your story, click the submit button.
+    </div>
+  </div>
+  <div class="form-floating col-md-12">
+    <h2><span class='text-span'>The</span> following fields are <strong>not</strong> required.</h2>
+  </div>
+  <!-- Tags -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Tags</span> (i.e. 'mental health' or 'depression')</h4>
+  </div>
+    <div id="headerImageCaption" class="input-group-lg col-md-12" style="margin-top:-10px;">
+    <input type="text" class="form-control" placeholder="Mental health, recovery" id="tagsInput" aria-describedby="tagsHelpBlock"
+      oninput=addPill() onblur=addLastPill()>
+    </input>
+    <div id="tagsHelpBlock" class="form-text">
+      Enter a comma-separated list of tags for your story. These will be used to help people find your story. For example, if your story is about depression, you might enter 'depression' as a tag.
+    </div>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="form-floating col-md-12" id="tags-div">
+    </div>
+  </div>
+  <!-- 1/2 column headers -->
+  <div class=" col-md-6"  style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Email</span> address</h4>
+  </div>
+  <div class="col-md-6"  style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Twitter</span> handle</h4>
+  </div>
+  <!-- 1/2 column inputs -->
+  <div class="input-group has-validation input-group-lg col-md-6" style="margin-top: -10px; width: 50%;">
+    <input type="email" class="form-control" placeholder="healthy@example.com" id="emailInput"
+      aria-describedby="emailHelpBlock">
+    </input>
+  </div>
+  <div class="input-group has-validation input-group-lg col-md-6" style="margin-top: -10px; width: 50%">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" id="twitterUsername" placeholder="DevRelDiaries" aria-describedby="twitterUsernameHelpBlock">
+      </input>
+  </div>
+  <!-- 1/2 column help-texts -->
+  <div class="input-group col-md-6" style="margin-top: -5px; width: 50%">
+    <div id="emailHelpBlock" class="form-text">
+      You do <strong>not</strong> have to supply your email address. If you do, we will never share it with anyone
+      else.
+    </div>
+  </div>
+  <div class="input-group col-md-6" style="margin-top: -5px; width: 50%">
+    <div id="twitterUsernameHelpBlock" class="form-text">
+        You do <strong>not</strong> have to supply your twitter handle. If you do, we will link your submission to your
+          twitter account.
+    </div>
+  </div>
+  <!-- Website Input -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+    <h4><span class='text-span'>Your</span> website</h4>
+  </div>
+  <div class="col-md-12 input-group has-validation input-group-lg" style="margin-top: -10px;">
+    <input type="url" class="form-control" id="webInput" placeholder="https://mysite.com" aria-describedby="webHelpBlock">
+    </input>
+
+  </div>
+  <div id="webHelpBlock" class="form-text">
+        You do <strong>not</strong> have to supply this. If you do, we will link your submission back to this address.
+  </div>
+  <!-- user avatar -->
+  <div class="input-group input-group-lg col-md-12" style="margin-bottom: -10px;">
+      <h4><span class='text-span'>Your</span> Avatar Image</h4>
+  </div>
+  <div class="input-group input-group-lg has-validation col-md-12" style="margin-top: -10px;">
+    <input
+      type="file"
+      class="form-control"
+      id="avatarFileInput"
+      aria-describedby="avatarImageHelpBlock"
+      imgType="avatar"
+      placeholder="myImage.png"
+      onchange=setImage(avatar)
+      accept="image/*">
+    </input>
+  </div>
+   <div
+      id="avatarImageHelpBlock"
+      class="form-text">
+        Choose an image you'd like to use as your 'avatar'. This will be displayed next to your submission.
+    </div>
+  <div
+      id="avatar-image"
+      class="col-md-12">
+  </div>
+  <!-- Consent and submit/clear section -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="form-floating col-md-8">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="reverseCheck1" onchange=checkCOC()>
+        </input>
+        <label class="form-check-label" for="reverseCheck1">
+          I have read and agree to the <a href="/code_of_conduct" target="_blank">Code of Conduct</a> and <a
+            href="/privacy_policy" target="_blank">Privacy Policy</a>.
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-floating col-md-2">
+      <button id="submitButton" class="btn btn-primary me-md-2" type="submit" disabled>Submit</button>
+    </div>
+    <div class="form-floating col-md-2">
+      <button class="btn btn-danger" type="button" onClick=clearForm()>Clear</button>
+    </div>
+  </div>
+</form>
+<script>
+  const count = document.getElementById('count');
+  const input = document.getElementById('mde-input');
+  var globalWordCounter = 0;
+  const WORD_LIMIT = 100000;
+
+  input.addEventListener('keydown', function (e) {
+    if (globalWordCounter > WORD_LIMIT && e.code !== "Backspace") {
+      e.preventDefault();
+      return alert("You have reached the word limit");
+    }
+  });
+
+  input.addEventListener('keyup', function (e) {
+    wordCounter(e.target.value);
+  });
+
+  function isWord(str) {
+    var alphaNumericFound = false;
+    for (var i = 0; i < str.length; i++) {
+      const code = str.charCodeAt(i);
+      if ((code > 47 && code < 58) || // numeric (0-9)
+        (code > 64 && code < 91) || // upper alpha (A-Z)
+        (code > 96 && code < 123)) { // lower alpha (a-z)
+        alphaNumericFound = true;
+        return alphaNumericFound;
+      }
+    }
+    return alphaNumericFound;
+  }
+
+  function wordCounter(text) {
+    var text = input.value.replace(/\n/g, " ");
+    var charCount = 0;
+    for (var i = 0; i < text.length; i++) {
+      charCount++;
+    }
+    text = text.split(' ');
+    var wordCount = 0;
+    for (var i = 0; i < text.length; i++) {
+      if (!text[i] == ' ' && isWord(text[i])) {
+        wordCount++;
+      }
+    }
+    var wordcharCount = wordCount.toString() + " Character Count: " + charCount.toString();
+    globalWordCounter = wordcharCount;
+    count.innerText = wordcharCount;
+  }
+
 </script>
+{{ $editor := resources.Get "js/editor.js" }}
+
+{{ if .Site.IsServer }}
+<script src="{{ $editor.Permalink }}"></script>
+{{ else }}
+<script src="{{ ($editor | minify | fingerprint).RelPermalink }}"></script>
+{{ end }}

@@ -6,10 +6,10 @@
   <div class="post-head">
     <div class="post-tags__box">
       {{ range ($.GetTerms "tags") }}
-        <a href="{{ .Permalink }}" class="post__tag">{{ .LinkTitle }}</a>
+      <a href="{{ .Permalink }}" class="post__tag">{{ .LinkTitle }}</a>
       {{ end }}
     </div>
-    <h1 class="post-title">{{ .Title }}</h1>
+    <h1 class="post-title">{{ .Title | safeHTML }}</h1>
   </div>
 </div>
 
@@ -18,15 +18,15 @@
   <div class="row">
     <div class="col col-12">
       <div class="post-image">
-        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title | safeHTML }}">
       </div>
       <div id="caption" class="col col-12">
-      {{ if .Params.image_caption }}
+        {{ if .Params.image_caption }}
         <div class="post-image__caption">
           {{ .Params.image_caption | safeHTML }}
         </div>
-      {{ end }}
-    </div>
+        {{ end }}
+      </div>
     </div>
   </div>
 </div>
@@ -38,13 +38,42 @@
 
     <div class="post__info">
       <div class="post__author">
-        <a href="/about/" class="post__author-image">
-          <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+        {{ if .Params.author_link }}
+        <a href="{{ .Params.author_link }}" class="post__author-image">
+          {{ if .Params.author_avatar }}
+          <img class="lazy" data-src="{{ .Params.author_avatar }}" alt="{{ .Params.author }}">
+          {{ else }}
+          <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}"
+            alt="{{.Site.Params.author.author__name}}">
+          {{ end }}
         </a>
         <div class="post__author-info">
-          <a href="/about/" class="post__author-link">{{.Site.Params.author.author__name}}</a>
-          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time></span>
+          <a href="{{ .Params.author_link }}" class="post__author-link">{{ .Params.author | safeHTML }}</a>
+          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00"
+              }}">{{ .Date.Format "2 Jan 2006" }}</time></span>
+              {{ if .Params.author_twitter}}
+              <span><a href="https://twitter.com/{{.Params.author_twitter}}"><img class="lazy"
+                    data-src="/images/twit-32.png" alt="@{{.Params.author_twitter}}"></a></span>
+              {{ end }}
         </div>
+        {{ else }}
+        <a href="/about/" class="post__author-image">
+          {{ if .Params.author_avatar }}
+          <img class="lazy" data-src="{{ .Params.author_avatar }}" alt="{{ .Params.author }}">
+          {{ else }}
+          <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}" alt="{{.Site.Params.author.author__name}}">
+          {{ end }}
+        </a>
+        <div class="post__author-info">
+          <a href="/about/" class="post__author-link">{{ .Params.author | safeHTML }}</a>
+          <span class="post__date"><time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00"
+              }}">{{ .Date.Format "2 Jan 2006" }}</time></span>
+              {{ if .Params.author_twitter}}
+              <span><a href="https://twitter.com/{{.Params.author_twitter}}"><img class="lazy"
+                    data-src="/images/twit-32.png" alt="@{{.Params.author_twitter}}"></a></span>
+              {{ end }}
+        </div>
+        {{ end }}
       </div>
 
       {{ partial "share-buttons.html" . }}
@@ -64,7 +93,7 @@
 {{ partial "related-posts.html" . }}
 
 {{ if .Site.Params.disqus.disqusShortname }}
-  {{ partial "disqus-comments.html" . }}
+{{ partial "disqus-comments.html" . }}
 {{ end }}
 
 
@@ -72,7 +101,7 @@
 
 <div class="container">
   <div class="page-head">
-    <h1 class="page-title">{{ .Title }}</h1>
+    <h1 class="page-title">{{ .Title | safeHTML }}</h1>
   </div>
 </div>
 
@@ -88,22 +117,22 @@
         {{ .Params.image_caption | safeHTML }}
       </div>
       {{ end }}
-  </div>
-</div>
-{{ end }}
-
-<!-- begin page -->
-<div class="container">
-
-  <article class="page animate">
-    <div class="page__content">
-      {{ .Content }}
     </div>
-  </article>
+  </div>
+  {{ end }}
 
-</div>
-<!-- end page -->
+  <!-- begin page -->
+  <div class="container">
 
-{{ end }}
+    <article class="page animate">
+      <div class="page__content">
+        {{ .Content }}
+      </div>
+    </article>
 
-{{ end }}
+  </div>
+  <!-- end page -->
+
+  {{ end }}
+
+  {{ end }}

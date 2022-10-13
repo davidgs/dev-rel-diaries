@@ -7,7 +7,7 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
 rssLimit = 25
 
 [params]
-  logo = "/images/DevAdv.png" 
+  logo = "/images/DevAdv.png"
   description = "DevRel Diaries: Where Real DevRel Meets Real Life"
 
 # Main Menu
@@ -19,10 +19,23 @@ rssLimit = 25
     weight = 1
 
   [[menu.main]]
-    identifier = "CoC"
-    name = "Code of Conduct"
-    url = "/CODE_OF_CONDUCT/"
+    identifier = "Policies"
+    name = "Policies"
+    url = "/policies/"
     weight = 2
+    hasChildren = true
+
+    [[menu.main]]
+      parent = "Policies"
+      name = "Code of Conduct"
+      url = "/code_of_conduct/"
+      weight = 1
+
+    [[menu.main]]
+      parent = "Policies"
+      name = "Privacy Policy"
+      url = "/privacy_policy/"
+      weight = 2
 
   [[menu.main]]
     identifier = "Contribute"
@@ -31,24 +44,23 @@ rssLimit = 25
     weight = 3
     hasChildren = true
 
-
     [[menu.main]]
       parent = "Contribute"
-      name = "Code of Conduct"
-      url = "/code_of_conduct/"
-      weight = 4
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "Privacy Policy"
-      url = "/privacy_policy/"
-      weight = 5
-
-    [[menu.main]]
-      parent = "Contribute"
-      name = "How to ..."
+      name = "How to Contribute"
       url = "/contribute/"
       weight = 1
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Submit Your Story"
+      url = "/submit/"
+      weight = 2
+
+    [[menu.main]]
+      parent = "Contribute"
+      name = "Submit a Quote"
+      url = "/submit_quote/"
+      weight = 3
 
   [[menu.main]]
     identifier = "stories"
@@ -69,12 +81,6 @@ rssLimit = 25
     url = "/posts/"
     weight = 2
 
-  [[menu.main]]
-    parent = "Pages"
-    name = "Code of Conduct"
-    url = "/CODE_OF_CONDUCT/"
-    weight = 2
-
   # Call to action button
   [params.menu.button]
     cta__button__text = "Get in touch"
@@ -82,7 +88,7 @@ rssLimit = 25
   # Author Settings
   [params.author]
     author__name = "DevRel Diaries"
-    author__title = "Hello We are DevRel Diaries"
+    author__title = "<span class='text-span'>Hello</span> We are DevRel Diaries"
     author__bio = "We are collecting and sharing real-life stories from real-life Developer Relations Professionals. Please feel free to share with us! See [how to contribute](/about/)."
     author__image = "/images/bethany-randall-XgZ0et0FUS8-unsplash.jpg"
     author__avatar = "/images/DevAdv.png"
@@ -91,40 +97,36 @@ rssLimit = 25
   # Projects Settings
   [params.projects]
     enable = false
-    projects__title= "How to contribute a <span class='text-span'>Story</span> to the Diaries" # Add a 'text-span' class to highlight text.
+    projects__title= "<span class='text-span'>How</span> to contribute a Story to the Diaries"
     projects__description= ""
 
   # Blog Section
   [params.blog]
     enable = true
-    blog__title = "Recent <span class='text-span'>Stories</span> " # Add a 'text-span' class to highlight text.
+    blog__title = "<span class='text-span'>Recent</span> Stories "
     blog__description = "Read the latest diary entries"
 
   # Contact Settings
   [params.contact]
     enable = true
-    contact__email = "diaries@devreldiaries.com" # Add your form_id
-    contact__title = "<span class='text-span'>Get</span> in touch" # Add a title to your form
-    contact__description = "Contribute your story!" # Add a description to your form
-
-    # NOTE
-    # Avenco comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want.
+    contact__email = "diaries@devreldiaries.com"
+    contact__title = "<span class='text-span'>Get</span> in touch"
+    contact__description = "Contribute your story!"
 
   # Newsletter Settings
   [params.mailchimp]
     enable = false
-    mailchimp__title = "<span class='text-span'>Join</span> my mailing list" # Add your title
-    mailchimp__text = "Get the best inspiration and, cool stuff about design!" # Add descriptions to the form. If you want to use more than one sentence, be sure to separate them with a comma.
+    mailchimp__title = "<span class='text-span'>Join</span> my mailing list"
+    mailchimp__text = "Get the best inspiration and, cool stuff about design!"
     mailchimp__identifier = "frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3" # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
-    mailchimp__button__text = "Subscribe" # Add your button text
+    mailchimp__button__text = "Subscribe"
+
 
 # Comment Section (Disqus)
   [params.disqus]
     enable = false
-    disqusShortname = "anvodstudio-demo" # Add your shortname for Disqus Comment. For example anvodstudio-demo
+    disqusShortname = "anvodstudio-demo"
 
-
-  #-------------------------------
   # Footer Settings
   # Social Links
   [[params.social]]
@@ -137,15 +139,6 @@ rssLimit = 25
     name = "Github"
     link = "https://github.com/davidgs/dev-rel-diaries"
 
-  # Example of adding a new link to the footer section:
-  # [[params.social]]
-  #   icon = "ion-logo-facebook"
-  #   name = "Facebook"
-  #   link = "https://facebook.com"
-
-  # Other icons can be found at https://ionicons.com/v4/
-
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -156,6 +149,7 @@ rssLimit = 25
   guessSyntax = true
   noClasses = false
 
+
 # Testimonials Section
   [params.testimonials]
     enable = true
@@ -165,7 +159,7 @@ rssLimit = 25
   [[params.testimonial_item]]
     name = "David G. Simmons"
     link="https://twitter.com/davidgsIoT"
-    image = "/images/8FhkFR08_400x400.jpg"
+    image = "/posts/avatars/profile-pic.png"
     designation = "Head of Developer Advocacy"
     content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
 

@@ -2,10 +2,33 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="apple-touch-icon-precomposed"
+    sizes="57x57" href="{{ "favicon-apple-touch-114.png" | relURL }}">
 
-  <title>{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
+<link rel="apple-touch-icon-precomposed"
+    sizes="114x114" href="{{ "favicon-apple-touch-114.png" | relURL }}">
+
+<link rel="apple-touch-icon-precomposed"
+    sizes="72x72" href="{{ "favicon-apple-touch-144.png" | relURL }}">
+
+<link rel="apple-touch-icon-precomposed"
+    sizes="144x144" href="{{ "favicon-apple-touch-144.png"| relURL }}">
+
+<link rel="icon" type="image/vnd.microsoft.icon"
+    sizes="32x32 48x48" href="{{ "favicon.ico" | relURL }}">
+
+<link rel="icon" sizes="128x128" href="{{ "favicon.icns" | relURL }}">
+
+<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+<title>{{ if not .IsHome }}{{ humanize .Title | safeHTML }} | {{ end }}{{ .Site.Title }}</title>
+<meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
 
   {{ with .OutputFormats.Get "rss" -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
@@ -24,9 +47,9 @@
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  
+
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" as="style">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" rel="stylesheet">
 
   <!-- Ionicons -->
@@ -36,7 +59,11 @@
 
   <!-- CSS -->
   {{ with resources.Get "sass/main.scss" | toCSS | minify }}
-  <style>{{ .Content | safeCSS }}</style>
+  <style>{{ .Content | safeCSS }}
+  .custom-tooltip {
+  --bs-tooltip-bg: linear-gradient(135deg, #4235d0 38%, #f969cd 100%);;
+}
+</style>
   {{ end }}
 
 </head>

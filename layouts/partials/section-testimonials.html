@@ -18,10 +18,9 @@
             </ul>
           </div>
           {{ if .Site.Params.testimonials.testimonial__description }}
-            <p class="section__description">{{ .Site.Params.testimonials.testimonial__description }}</p>
+            <p class="section__description">{{ .Site.Params.testimonials.testimonial__description | safeHTML }}</p>
           {{ end }}
         </div>
-
         <div class="testimonials__slider my-slider">
         {{ with .Site.Params.testimonial_item }}
           {{ range . }}
