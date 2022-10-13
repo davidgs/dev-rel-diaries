@@ -6,4 +6,4 @@ description: "Contributing Pearls of Wisdom"
 date: 2021-07-15
 ---
 
-<h3><span class='text-span'>On-line</span> submission form coming soon!</h3>
+{{<quote-editor>}}

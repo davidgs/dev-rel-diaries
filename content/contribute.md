@@ -39,7 +39,8 @@ Once you've filled out the **required** fields you can begin writing your story.
 
 Publishing your story will look something like this:
 
-![Publishing your story](/images/howto.mp4)
+{{< video "/images/howto.mp4" "video-div">}}
+<p></p>
 
 ### <span class='text-span'>Submitting</span> your story
 

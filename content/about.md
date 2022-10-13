@@ -18,7 +18,7 @@ This project is carefully and lovingly created and curated by
 
 ## <span class='text-span'>What</span> is 'your story'?
 
-Your story, really, is whatever you want it to be. Whatever you've experienced. This site is about *your* lived experience with mental health in Devrel. Some basic ideas:
+Your story, really, is whatever you want it to be. Whatever you've experienced. This site is about *your* lived experience with mental health in DevRel. Some basic ideas:
 
 - Have you experienced a mental health crisis? We'd love to hear about what happened, and how you dealt with it.
 - Have you experienced a mental health crisis and *not* dealt with it? We'd love to hear about that too.
@@ -37,26 +37,17 @@ We want you to feel safe sharing your story.
 
 The very **first** thing is to make sure you're aware of, and agree to, our [Code of Conduct](/code_of_conduct/) and [Privacy Policy](/privacy_policy/).
 
-### Submit your story non-anonymously
+Once you've done that, you can submit your story. We'll review it, and if it's appropriate, we'll publish it. We'll also share it on our social media channels. [@DevRelDiaries](https://twitter.com/DevRelDiaries) on Twitter.
 
-We're trying to make it as easy as we can for you to share. If you don't want to be anonymous, you can simply clone the repository for this site at [DevrelDiaries on GitHub](https://github.com/davidgs/dev-rel-diaries), write your story in markdown, and submit a pull request. We'll review it and publish it.
+### How to submit your story
 
-1) Create a new directory in `/content/posts/` for your story.
-2) Start a new file in the new directory. Name it something like `my-story.md`. Add the following to the top of the file:
+Really, we're trying to make this as easy as possible. Please see the [instructions for submitting your story](/contribute/).
 
-```
----
-title: "My Story"
-date: 2021-07-15
-image: /images/whatever.jpg
-description: "My story about mental health and wellness"
-author: "Sneaky Fox"
----
-```
-Put your image in the `static/images` directory. Then write your story in markdown.
 
-If you want to be anonymous, you can email your story to [DevRelDiaries](mailto:stories@devreldiaries.com&subject=My%20Story) and we'll publish it for you. It would be *super* helpful if you could write your story in markdown (following the instructions above) and include any images, what pseudonym you'd like to use, etc. as well.
+## <span class='text-span'>Words</span> of wisdom
 
-**Note:** We will never publish your email address or any other identifying information without your express consent. We will not share your email address or any other identifying information with anyone else. Ever. Once your story is posted on the site, we will delete your email.
+You'll notice on our main page that we have some small items containing "words of wisdom". These are quotes from people who have been kind enough to share their thoughts with us. We hope that you'll find them helpful, and that they'll inspire you to share your story.
 
-We are looking into an anonymous submission form, but we're not there yet.
+### <span class='text-span'>How</span> to submit a quote
+
+We'd love to hear from you. If you have a quote that you think would be helpful to others, please [submit it here](/submit_quote/). If you're unsure how the submission process works, please see the [instructions for submitting a quote](/contribute/) which are, essentially, the same as for submitting a story.

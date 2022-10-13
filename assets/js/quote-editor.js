@@ -3,15 +3,15 @@
 // const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-// have they agreed to the CoC yet?
-let coc = false
-const header = 'header'
-const post = 'post'
-const avatar = 'avatar'
+// have they agreed to the quoteCoC yet?
+let quoteCoC = false
+const quoteHeader = 'header'
+const quotePost = 'post'
+const quoteAvatar = 'avatar'
 
-const server = 'https://devreldiaries.com'
+const quoteServer = 'https://devreldiaries.com'
 // Set up the Markdown editor
-const easyMDE = new EasyMDE({
+const quoteMDE = new EasyMDE({
   autoDownloadFontAwesome: true,
   autosave: {
     enabled: true,
@@ -28,9 +28,9 @@ const easyMDE = new EasyMDE({
     'clean-block',
     'horizontal-rule'
   ],
-  element: document.getElementById('mde-input'),
+  element: document.getElementById('mde-quote-input'),
 })
-easyMDE.value('') // clear the editor
+quoteMDE.value('') // clear the editor
 
 // Enable the next text field as soon as you've typed into this one.
 function enableNextField(e) {
@@ -48,49 +48,46 @@ function enableNextField(e) {
 // @param {string} imageType - the type of the input field
 function setImage(imageType) {
   var f
-  if (imageType === header) {
+  if (imageType === quoteHeader) {
     f = document.getElementById('headerFileInput').files[0]
     document.getElementById('headerFileInput').disabled = true
-  } else if (imageType === post) {
+  } else if (imageType === quotePost) {
     f = document.getElementById('postFileInput').files[0]
-  } else if (imageType === avatar) {
+  } else if (imageType === quoteAvatar) {
     f = document.getElementById('avatarFileInput').files[0]
     document.getElementById('avatarFileInput').disabled = true
   }
   if (!f.type === 'image/jpeg' || !f.type === 'image/png' || !f.type === 'image/gif' ) {
-    if (imageType === header) {
-      const cl = document.getElementById('headerFileInput')
-      cl.value = ''
-    } else if (imageType === post) {
-      const cl = document.getElementById('postFileInput')
-      cl.value = ''
-    } else if (imageType === avatar) {
-      const cl = document.getElementById('avatarFileInput')
-      cl.value = ''
+    if (imageType === quoteHeader) {
+      document.getElementById('headerFileInput').value = ''
+    } else if (imageType === quotePost) {
+      document.getElementById('postFileInput').value = ''
+    } else if (imageType === quoteAvatar) {
+      document.getElementById('avatarFileInput').value = ''
     }
     return alert('Only image files of type .png, .jpg, .jpeg or .gif are acceptable. Please upload a valid image file.')
   }
   console.log('setImage: ' + f)
-  const reader = new FileReader()
-  reader.readAsDataURL(f)
-  reader.onload = function () {
-    var imgName = f.name
-    if (imageType === header) {
-      imgName = 'header-' + imgName
-    } else if (imageType === post) {
-      imgName = 'post-' + imgName
-    } else if (imageType === avatar) {
-      imgName = 'avatar-' + imgName
+  const quoteReader = new FileReader()
+  quoteReader.readAsDataURL(f)
+  quoteReader.onload = function () {
+  var quoteImgName = f.name
+    if (imageType === quoteHeader) {
+      quoteImgName = 'header-' + quoteImgName
+    } else if (imageType === quotePost) {
+      quoteImgName = 'post-' + quoteImgName
+    } else if (imageType === quoteAvatar) {
+      quoteImgName = 'avatar-' + quoteImgName
     }
     const data = {
-      type: 'image',
-      name: imgName,
-      image: `${reader.result}`,
-      title: `${document.getElementById('titleInput').value}`
+      type: 'quote-image',
+      name: quoteImgName,
+      image: `${quoteReader.result}`,
+      title: document.getElementById('nameInput').value,
     }
-    var imgData = `${reader.result}`
+    var imgData = `${quoteReader.result}`
     console.log(imgData)
-    fetch(server + ':9494/submitImage', {
+    fetch(quoteServer + ':9494/submitImage', {
       mode: 'cors',
       method: 'POST',
       headers: {
@@ -109,13 +106,13 @@ function setImage(imageType) {
           const foo = response.body
           console.log('Image upload failed')
           alert('Image upload failed: ' + response.status + ' ' + response.statusText)
-          if (imageType === header) {
+          if (imageType === quoteHeader) {
             const cl = document.getElementById('headerFileInput')
             cl.value = ''
-          } else if (imageType === post) {
+          } else if (imageType === quotePost) {
             const cl = document.getElementById('postFileInput')
             cl.value = ''
-          } else if (imageType === avatar) {
+          } else if (imageType === quoteAvatar) {
             const cl = document.getElementById('avatarFileInput')
             cl.value = ''
           }
@@ -131,27 +128,27 @@ function setImage(imageType) {
 // @param {base64-encoded string} imgData - the base64 encoded image data
 function insertImage(location, imgData, imageType) {
   var imageDiv
-  if (imageType === header) {
+  if (imageType === quoteHeader) {
     imageDiv = document.getElementById('header-image')
-  } else if (imageType === post) {
+  } else if (imageType === quotePost) {
     imageDiv = document.getElementById('post-image')
     cl = document.getElementById('postFileInput')
     cl.value = ''
-  } else if (imageType === avatar) {
+  } else if (imageType === quoteAvatar) {
     imageDiv = document.getElementById('avatar-image')
   }
   const imageDivDiv = document.createElement('div')
   imageDiv.appendChild(imageDivDiv)
-  if (imageType === header) {
+  if (imageType === quoteHeader) {
     imageDivDiv.setAttribute('class', 'header-image-div-format')
   } else {
     imageDivDiv.setAttribute('class', 'upload-image')
   }
-  imageDivDiv.setAttribute('id', server + '/dev-rel-diaries-server/' + location)
+  imageDivDiv.setAttribute('id', quoteServer + '/dev-rel-diaries-server/' + location)
   imageDivDiv.setAttribute('location', location)
   const closeButton = document.createElement('button')
   closeButton.setAttribute('type', 'button')
-  if (imageType === header || imageType === avatar) {
+  if (imageType === quoteHeader || imageType === quoteAvatar) {
     closeButton.setAttribute('class', 'btn-close close-pos-header')
   } else {
     closeButton.setAttribute('class', 'btn-close close-pos')
@@ -181,13 +178,13 @@ function insertImage(location, imgData, imageType) {
       title: savedLoc
     }
     if (savedLoc.indexOf('header') <= 0 ) {
-      var val = easyMDE.value()
+      var val = quoteMDE.value()
       val = val.replace(findMe, '')
-      easyMDE.value(val)
+      quoteMDE.value(val)
     }
     pNode.remove()
     // remove the image from the server
-    fetch(server + ':9494/delImage', {
+    fetch(quoteServer + ':9494/delImage', {
       mode: 'cors',
       method: 'POST',
       headers: {
@@ -221,16 +218,16 @@ function insertImage(location, imgData, imageType) {
       if (e.target.checked) {
         pNode.setAttribute('class', 'upload-image selected')
         console.log('checked')
-        var val = easyMDE.value()
+        var val = quoteMDE.value()
         console.log(val)
         console.log(val.length)
         val += ' ![image](' + pNode.id + ') '
-        easyMDE.value(val)
+        quoteMDE.value(val)
       } else {
         const findMe = ' ![image](' + pNode.id + ') '
-        var val = easyMDE.value()
+        var val = quoteMDE.value()
         val = val.replace(findMe, '')
-        easyMDE.value(val)
+        quoteMDE.value(val)
         pNode.setAttribute('class', 'upload-image')
       }
     })
@@ -254,108 +251,23 @@ function insertImage(location, imgData, imageType) {
   }
 }
 
-function addPill() {
-  enableNextField(this)
-  if (!document.getElementById('tagsInput').value.includes(',')) {
-    return
-  }
-  const tags = document.getElementById('tagsInput').value
-  console.log(document.getElementById('tagsInput').value)
-  if (tags.includes(',')) {
-    const tagsArray = tags.split(',')
-    const tagsDiv = document.getElementById('tags-div')
-    const pill = document.createElement('button')
-    pill.classList.add('pill--purple')
-    pill.setAttribute('type', 'button')
-    pill.innerText = tagsArray[0]
-    pill.innerHTML += '<span class="close"></span>'
-    tagsDiv.appendChild(pill)
-    pill.addEventListener('click', (e) => {
-      const p = e.target.parentElement
-      e.currentTarget.remove()
-    })
-    document.getElementById('tagsInput').value = ''
-  }
-}
-function addLastPill() {
-  if (document.getElementById('tagsInput').value.length == 0) {
-    return
-  }
-  const tags = document.getElementById('tagsInput').value
-  console.log(document.getElementById('tagsInput').value)
-  const tagsDiv = document.getElementById('tags-div')
-  const pill = document.createElement('button')
-  pill.classList.add('pill--purple')
-  pill.setAttribute('type', 'button')
-  pill.innerText = tags
-  pill.innerHTML += '<span class="close"></span>'
-  tagsDiv.appendChild(pill)
-  pill.addEventListener('click', (e) => {
-    const p = e.target.parentElement
-    e.currentTarget.remove()
-  })
-  document.getElementById('tagsInput').value = ''
-}
-
 function clearForm() {
-  easyMDE.value('')
+  quoteMDE.value('')
 }
-
-function validateForm() {
-  const forms = document.querySelectorAll('.needs-validation')
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-}
-
 async function submitForm(e) {
   console.log('submitting')
   const forms = document.querySelectorAll('.needs-validation')
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-    }, false)
-  const title = document.getElementById('titleInput').value
-  const description = document.getElementById('descriptionInput').value
-  const headerImage = document.getElementById('headerFileInput').value
-  const headerCaption = document.getElementById('captionInput').value
-  const email = document.getElementById('emailInput').value
-  const twitter = document.getElementById('twitterUsername').value
-  const name = document.getElementById('nameInput').value
-  const web = document.getElementById('webInput').value
-  const tagsButtons = document.getElementById('tags-div').querySelectorAll('button')
-  const tags = []
-  tagsButtons.forEach((b) => {
-    tags.push(b.innerText)
-  })
-  const avatarImage = document.getElementById('avatarFileInput').value
-  const content = easyMDE.value()
   const data = {
-    title: title,
-    description: description,
-    author_email: email,
-    author_twitter: twitter,
-    author_name: name,
-    content: content,
-    tags: tags,
-    header_image: headerImage,
-    image_caption: headerCaption,
-    author_link: web,
-    author_avatar: avatarImage,
+    author_email: document.getElementById('emailInput').value,
+    author_twitter: document.getElementById('twitterUsername').value,
+    author_name: document.getElementById('nameInput').value,
+    content: quoteMDE.value(),
+    author_link: document.getElementById('webInput').value,
+    author_title: document.getElementById('descriptionInput').value,
+    author_avatar: document.getElementById('avatarFileInput').value,
   }
   console.log(data)
-  fetch(server + ':9494/submitStory', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+  fetch(quoteServer + ':9494/submitQuote', { mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data)
@@ -366,21 +278,11 @@ async function submitForm(e) {
 }
 
 function checkCOC() {
-  coc = !coc
-  console.log(coc)
-  if (coc) {
+  quoteCoC = !quoteCoC
+  console.log(quoteCoC)
+  if (quoteCoC) {
     document.getElementById('submitButton').removeAttribute('disabled')
   } else {
     document.getElementById('submitButton').setAttribute('disabled', 'disabled')
   }
 }
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-
-})()
