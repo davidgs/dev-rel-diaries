@@ -88,8 +88,8 @@ rssLimit = 25
   # Author Settings
   [params.author]
     author__name = "DevRel Diaries"
-    author__title = "<span class='text-span'>Hello</span> We are DevRel Diaries"
-    author__bio = "We are collecting and sharing real-life stories from real-life Developer Relations Professionals. Please feel free to share with us! See [how to contribute](/about/)."
+    author__title = "<span class='text-span'>Hello,</span> We are DevRel Diaries"
+    author__bio = "We are collecting and sharing real-life stories about mental health from real-life Developer Relations Professionals. Please, share your story with us! See [how you can contribute](/about/)."
     author__image = "/images/bethany-randall-XgZ0et0FUS8-unsplash.jpg"
     author__avatar = "/images/DevAdv.png"
     button__text = "See our stories"

@@ -5,15 +5,26 @@ image_caption: "Photo by <a href=\"https://unsplash.com/@nate_dumlao?utm_source=
 description: "Contributing to DevRel Diaries"
 date: 2021-07-15
 ---
+
+## <span class='text-span'>What</span> we're looking for
+
+Your story is whatever you want it to be. Whatever you've experienced. This site is about *your* lived experience with mental health in Devrel. Some basic ideas:
+
+- Have you experienced a mental health crisis? We'd love to hear about what happened, and how you dealt with it.
+- Have you experienced a mental health crisis and *not* dealt with it? We'd love to hear about that too.
+- Have you experienced a mental health crisis and dealt with it in a way that you think others could benefit from? We'd love to hear the story around that.
+- Have you experienced discrimination, or worked in a low-trust environment because of your mental health issues? Tell us about that, how it affected you, and how you dealt with it.
+
+Really, we are interested in hearing your stories about *any* aspect of mental health, mental wellness, self-care and self-awareness, and how it relates to DevRel. We want to help alleviate the stigma of mental health issues in tech. We hope to show others that it's ok to talk about it, and that they are not alone in their struggles.
+
+You never know the impact your story, your life experience, can have on someone. What to you was a trivial 'aha!' moment, could be a life-changing revelation for someone else. 
 ## <span class='text-span'>How</span> this works
 
-We want to let you share your story. But we also recognize that sharing a personal story, especially about Mental Health, can be a difficult thing to do. So we've created a process that we hope will make it easier for you.
+We recognize that sharing a personal story, especially about mental health, can be a difficult thing to do. So we've created a process that we hope will make it easier for you by giving you the option to contribute either with your name or anonymously. We want you to feel safe sharing your story.
 
-We want you to feel safe sharing your story.
+Below are the instructions for the two _best_ ways to contribute your story. If neither of these work for you, please [reach out](mailto:stories@devreldiaries.com) to us and let's work together to find something that works.
 
-The very **first** thing though is to make sure you're aware of, and agree to, our [Code of Conduct](/code_of_conduct/) and our [Privacy Policy](/privacy_policy). We take these *very* seriously. You should too.
-
-We're making it as easy as we can for you to share your story in whatever way makes you the most confortable. Below are the instructions for the two _best_ ways to contribute your story. If neither of these work for you, please [reach out](mailto:stories@devreldiaries.com) to us and let's work together to find something that works.
+The very **first** thing is to make sure you're aware of, and agree to, our [Code of Conduct](/code_of_conduct/) and our [Privacy Policy](/privacy_policy). We take these *very* seriously. You should too.
 
 ## <span class='text-span'>Contributing</span> anonymously
 
@@ -44,7 +55,7 @@ Publishing your story will look something like this:
 
 ### <span class='text-span'>Submitting</span> your story
 
-Once you're done editing your story, you can submit it by clicking the `Submit` button at the bottom of the page. Before you are able to clik the `Submit` button you must confirm that you agree to the [Code of Conduct](/code_of_conduct/) and our [Privacy Policy](/privacy_policy). If you don't agree, you can't submit your story. If you do agree, you can click the `Submit` button and your story will be submitted for review. We will review your story and publish it as soon as we can. If we have any questions or concerns we will reach out to you (if possible) and work with you to resolve them. If we can't reach you, we may have to remove your story.
+Once you're done editing your story, you can submit it by clicking the `Submit` button at the bottom of the page. Before you are able to click the `Submit` button you must confirm that you agree to the [Code of Conduct](/code_of_conduct/) and our [Privacy Policy](/privacy_policy). If you don't agree, you can't submit your story. Once you click the `Submit` button, your story will be submitted for review. We will review your story and publish it as soon as we can. If we have any questions or concerns we will reach out to you (if possible) and work with you to resolve them. If we can't reach you, we may have to remove your story. We'll also share it on our social media channels. [@DevRelDiaries](https://twitter.com/DevRelDiaries) on Twitter.
 
 ## <span class='text-span'>Contributing</span> using GitHub
 
