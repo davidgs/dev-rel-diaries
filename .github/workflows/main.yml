@@ -1,0 +1,37 @@
+name: Hugo pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+# Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout Web Repo
+        uses: actions/checkout@v2
+        with:
+          repository: davidgs/dev-rel-diaries
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          path: ./dev-rel-diaries
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.103.0'
+          extended: true
+      - name: Build
+        run: cd dev-rel-diaries; hugo --minify
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avzr
+          path: ./dev-rel-diaries/public/
+          remote_path: /home/${{ secrets.SSH_USER }}/www/devreldiaries.com
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.WEBSITE_DEPLOY_KEY }}
