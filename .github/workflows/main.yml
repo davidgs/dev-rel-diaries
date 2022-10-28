@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout Web Repo
         uses: actions/checkout@v2
@@ -35,3 +35,4 @@ jobs:
           remote_port: ${{ secrets.SSH_PORT }}
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.WEBSITE_DEPLOY_KEY }}
+          remote_key_pass: ${{ secrets.DEPLY_KEY_PASS }}
