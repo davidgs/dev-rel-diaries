@@ -169,9 +169,4 @@ rssLimit = 25
     link = "https://davidgs.com/"
     image = "/posts/avatars/profile-pic.png"
     designation = "Head of Developer Advocacy, StarTree"
-    content = "<h2><span class='text-span'>You&rsquo;re</span> only as sick as your secrets</h2>
-
-<p>So share your secrets with <em>someone</em>. Remember: A problem shared is a problem halved.</p>
-
-<p>You. Are. Not. Alone!</p>
-"
+    content = "<h2><span class='text-span'>You&rsquo;re</span> only as sick as your secrets</h2><p>So share your secrets with <em>someone</em>. Remember: A problem shared is a problem halved.</p><p>You. Are. Not. Alone!</p>"
