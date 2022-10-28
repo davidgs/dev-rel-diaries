@@ -163,3 +163,15 @@ rssLimit = 25
     designation = "Head of Developer Advocacy"
     content = "If a friend comes and says \"hey, I've noticed these changes in you, are you ok?\" You should do 2 things:<ol class=\"client-text\"><li> Be honest with them about how you're REALLY doing.</li><li> Tell them that you love them because they may have just saved your life.</li></ol>"
 
+
+  [[params.testimonial_item]]
+    name = "David G. Simmons"
+    link = "https://davidgs.com/"
+    image = "/posts/avatars/profile-pic.png"
+    designation = "Head of Developer Advocacy, StarTree"
+    content = "<h2><span class='text-span'>You&rsquo;re</span> only as sick as your secrets</h2>
+
+<p>So share your secrets with <em>someone</em>. Remember: A problem shared is a problem halved.</p>
+
+<p>You. Are. Not. Alone!</p>
+"
