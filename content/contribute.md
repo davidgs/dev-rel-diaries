@@ -17,7 +17,8 @@ Your story is whatever you want it to be. Whatever you've experienced. This site
 
 Really, we are interested in hearing your stories about *any* aspect of mental health, mental wellness, self-care and self-awareness, and how it relates to DevRel. We want to help alleviate the stigma of mental health issues in tech. We hope to show others that it's ok to talk about it, and that they are not alone in their struggles.
 
-You never know the impact your story, your life experience, can have on someone. What to you was a trivial 'aha!' moment, could be a life-changing revelation for someone else. 
+You never know the impact your story, your life experience, can have on someone. What to you was a trivial 'aha!' moment, could be a life-changing revelation for someone else.
+
 ## <span class='text-span'>How</span> this works
 
 We recognize that sharing a personal story, especially about mental health, can be a difficult thing to do. So we've created a process that we hope will make it easier for you by giving you the option to contribute either with your name or anonymously. We want you to feel safe sharing your story.
