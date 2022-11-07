@@ -1,5 +1,5 @@
 ---
-title: <span class='text-span'>Twitter</span> actually helps sometimes
+title: Twitter actually helps sometimes
 date: 2022-11-07
 image: posts/twitter-actually-helps-sometimes/images/header-mohamed-nohassi-odxB5oIG_iA-unsplash.jpg
 image_caption: Photo by <a href="https://unsplash.com/@coopery?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mohamed Nohassi</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>   
