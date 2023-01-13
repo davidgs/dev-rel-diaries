@@ -1,7 +1,7 @@
 ---
 title: <span class='text-span'>Talks</span> With Friends
 date: 2023-01-13
-image: posts/talks-with-friends/images/header-matt-howard-A4iL43vunlY-unsplash.jpg
+image: posts/talks-with-friends/images/header-matt-howard-a4il43vunly-unsplash.jpg
 image_caption: Photo by <a href="https://unsplash.com/@thematthoward?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matt Howard</a> on <a href="https://unsplash.com/s/photos/journey?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 description: Just Keep Swimming
 author: Ada Lovelace
